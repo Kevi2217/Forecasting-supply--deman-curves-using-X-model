@@ -1,1 +1,0 @@
-BLOCKED: mandatory OMIE raw-file coverage is incomplete. Run scripts/download_omie.py first; see reports/metrics/raw_coverage.json.

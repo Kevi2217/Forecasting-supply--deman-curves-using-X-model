@@ -1,0 +1,20 @@
+{
+  "n_matched": 17544,
+  "mae": 26.136908344733243,
+  "rmse": 35.65359204141984,
+  "bias": -24.669596443228457,
+  "median_absolute_error": 20.280000000000005,
+  "p95_absolute_error": 74.3385,
+  "n_total": 17544,
+  "invalid_count": 0,
+  "invalid_share": 0.0,
+  "status_counts": {
+    "OK": 17541,
+    "OK_AMBIGUOUS": 3
+  },
+  "gate": {
+    "max_clearing_mae_eur_mwh": 10.0,
+    "max_invalid_crossing_share": 0.01
+  },
+  "excluded_unsupported_geography_intervals": 0
+}

@@ -1,0 +1,15 @@
+{
+  "status": "VERIFIED",
+  "n_intervals": 17544,
+  "curve_country_counts": {
+    "MI": 16486,
+    "ES": 1058
+  },
+  "mi_intervals": 16486,
+  "mi_intervals_with_es_pt_price_split": 0,
+  "mi_split_share": 0.0,
+  "mi_mean_abs_es_pt_price_difference_eur_mwh": 0.0,
+  "mi_max_abs_es_pt_price_difference_eur_mwh": 0.0,
+  "unsupported_curve_countries": [],
+  "interpretation": "MI curves during ES/PT price divergence are not assumed to exactly reconstruct the Spanish zonal price."
+}

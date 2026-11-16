@@ -1,0 +1,33 @@
+{
+  "period": [
+    "2023-01-01",
+    "2024-12-31"
+  ],
+  "n_intervals": 17544,
+  "supply_unmatched_at_or_below_p_mwh": {
+    "count": 17544.0,
+    "mean": 4552.159336525308,
+    "std": 4013.740370586903,
+    "min": -3204.699999999997,
+    "5%": -1217.3350000000005,
+    "50%": 4251.9,
+    "95%": 12074.579999999989,
+    "max": 20029.600000000006
+  },
+  "demand_matched_not_in_offered_mwh": {
+    "count": 17544.0,
+    "mean": 1015.9678408572731,
+    "std": 1266.363537925994,
+    "min": -4605.299999999999,
+    "5%": -53.59999999999491,
+    "50%": 84.59999999999945,
+    "95%": 3068.0399999999945,
+    "max": 7380.0
+  },
+  "share_intervals_supply_unmatched_gt_500mwh": 0.8417692658458732,
+  "share_intervals_abs_demand_gap_gt_500mwh": 0.4740652074783402,
+  "clearing_error_correlations": {
+    "corr_error_vs_supply_unmatched": -0.7123875962995346,
+    "corr_error_vs_demand_not_in_offered": -0.2172052038643956
+  }
+}

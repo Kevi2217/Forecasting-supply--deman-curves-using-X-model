@@ -1,0 +1,2 @@
+FAILED: approximate observed-curve clearing does not meet the pre-specified feasibility gate; see reports/metrics/clearing_validation.json.
+exit=1

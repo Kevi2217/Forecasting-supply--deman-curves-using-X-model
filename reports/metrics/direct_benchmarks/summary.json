@@ -1,0 +1,222 @@
+{
+  "status": "VERIFIED (curve-independent benchmarks only)",
+  "price_files": 731,
+  "intervals_total": 17544,
+  "intervals_after_lag_dropna": 17370,
+  "train": [
+    "2023-01-08 00:00:00",
+    "2024-06-30 00:00:00",
+    12953
+  ],
+  "validation": [
+    "2024-07-01 00:00:00",
+    "2024-09-30 00:00:00",
+    2208
+  ],
+  "test": [
+    "2024-10-01 00:00:00",
+    "2024-12-31 00:00:00",
+    2209
+  ],
+  "test_common_finite": 2209,
+  "test_excluded": 0,
+  "selection": {
+    "direct_elastic_net": {
+      "kind": "elastic_net",
+      "params": {
+        "alpha": 0.001,
+        "l1_ratio": 0.9,
+        "max_iter": 10000
+      },
+      "validation_score": 18.395722285388068,
+      "candidate_scores": [
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.001,
+            "l1_ratio": 0.1,
+            "max_iter": 10000
+          },
+          "validation_score": 18.39907632167311
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.001,
+            "l1_ratio": 0.5,
+            "max_iter": 10000
+          },
+          "validation_score": 18.39738088505759
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.001,
+            "l1_ratio": 0.9,
+            "max_iter": 10000
+          },
+          "validation_score": 18.395722285388068
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.01,
+            "l1_ratio": 0.1,
+            "max_iter": 10000
+          },
+          "validation_score": 18.431668850306302
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.01,
+            "l1_ratio": 0.5,
+            "max_iter": 10000
+          },
+          "validation_score": 18.414366925226197
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.01,
+            "l1_ratio": 0.9,
+            "max_iter": 10000
+          },
+          "validation_score": 18.397490489064094
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.1,
+            "l1_ratio": 0.1,
+            "max_iter": 10000
+          },
+          "validation_score": 18.782812718599114
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.1,
+            "l1_ratio": 0.5,
+            "max_iter": 10000
+          },
+          "validation_score": 18.608011794872088
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.1,
+            "l1_ratio": 0.9,
+            "max_iter": 10000
+          },
+          "validation_score": 18.42317865552874
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 1.0,
+            "l1_ratio": 0.1,
+            "max_iter": 10000
+          },
+          "validation_score": 21.659847720238794
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 1.0,
+            "l1_ratio": 0.5,
+            "max_iter": 10000
+          },
+          "validation_score": 20.495659873365877
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 1.0,
+            "l1_ratio": 0.9,
+            "max_iter": 10000
+          },
+          "validation_score": 19.04973843233635
+        }
+      ]
+    },
+    "direct_hist_gradient_boosting": {
+      "kind": "hist_gradient_boosting",
+      "params": {
+        "learning_rate": 0.05,
+        "max_leaf_nodes": 31,
+        "max_iter": 150,
+        "l2_regularization": 0.1
+      },
+      "validation_score": 16.435520883671575,
+      "candidate_scores": [
+        {
+          "kind": "hist_gradient_boosting",
+          "params": {
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 15,
+            "max_iter": 150,
+            "l2_regularization": 0.1
+          },
+          "validation_score": 16.449178551650846
+        },
+        {
+          "kind": "hist_gradient_boosting",
+          "params": {
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 31,
+            "max_iter": 150,
+            "l2_regularization": 0.1
+          },
+          "validation_score": 16.435520883671575
+        },
+        {
+          "kind": "hist_gradient_boosting",
+          "params": {
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 15,
+            "max_iter": 150,
+            "l2_regularization": 0.1
+          },
+          "validation_score": 16.58112290636011
+        },
+        {
+          "kind": "hist_gradient_boosting",
+          "params": {
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 31,
+            "max_iter": 150,
+            "l2_regularization": 0.1
+          },
+          "validation_score": 16.579101253769007
+        }
+      ]
+    }
+  },
+  "headline": [
+    {
+      "model": "weekly_persistence_prediction",
+      "n": 2209,
+      "mae": 37.291561792666364,
+      "rmse": 48.93127895166939,
+      "bias": -5.819547306473517,
+      "median_absolute_error": 28.86
+    },
+    {
+      "model": "direct_elastic_net_prediction",
+      "n": 2209,
+      "mae": 22.629395924755006,
+      "rmse": 29.531795675390182,
+      "bias": -2.810399727641443,
+      "median_absolute_error": 17.613085778022814
+    },
+    {
+      "model": "direct_hgb_prediction",
+      "n": 2209,
+      "mae": 23.172523810980106,
+      "rmse": 29.990946712936548,
+      "bias": -4.0618729890318646,
+      "median_absolute_error": 18.35201205140615
+    }
+  ]
+}
