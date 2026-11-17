@@ -107,8 +107,9 @@ def _parse_number_series(values: pd.Series) -> pd.Series:
     return pd.to_numeric(s.replace("", np.nan), errors="coerce")
 
 
-def _data_rows(text: str, min_fields: int) -> list[list[str]]:
-    """Rows whose first field is an integer (data rows), padded/truncated to min_fields."""
+def _data_rows(text: str, min_fields: int, keep_fields: int | None = None) -> list[list[str]]:
+    """Rows whose first field is an integer (data rows), padded/truncated to keep_fields."""
+    keep = keep_fields or min_fields
     out: list[list[str]] = []
     for row in _rows(text):
         if len(row) < min_fields:
@@ -116,15 +117,28 @@ def _data_rows(text: str, min_fields: int) -> list[list[str]]:
         head = row[0]
         if not head or not (head.isdigit() or (head[0] in "+-" and head[1:].isdigit())):
             continue
-        out.append(row[:min_fields])
+        out.append((row + [""] * keep)[:keep])
     return out
 
 
+def _has_offer_type_column(text: str) -> bool:
+    """True when the header carries OMIE's 9th column 'Tipología de Oferta' (2025 files).
+
+    Values observed on real files: ``S`` (simple offer), ``C01``/``C02``/``C04`` (offers
+    with complex conditions) and coupling rows such as ``Imp FR`` in matched curves.
+    """
+    for line in text.splitlines()[:6]:
+        if line.startswith(("Hora;", "Periodo;")):
+            return "tipolog" in line.lower()
+    return False
+
+
 def parse_curve_text(text: str, source_file: str = "<memory>", timezone: str = "Europe/Madrid") -> pd.DataFrame:
-    rows = _data_rows(text, 8)
+    has_type = _has_offer_type_column(text)
+    rows = _data_rows(text, 8, 9 if has_type else 8)
     if not rows:
         raise ValueError(f"No OMIE curve data records found in {source_file}")
-    raw = pd.DataFrame(rows, columns=CURVE_COLUMNS)
+    raw = pd.DataFrame(rows, columns=CURVE_COLUMNS + (["offer_type"] if has_type else []))
     dates = pd.to_datetime(raw["delivery_date"], format="%d/%m/%Y", errors="coerce")
     energy = _parse_number_series(raw["energy_mwh"])
     price = _parse_number_series(raw["price_eur_mwh"])
@@ -143,6 +157,8 @@ def parse_curve_text(text: str, source_file: str = "<memory>", timezone: str = "
             "energy_mwh": energy.astype(float),
             "price_eur_mwh": price.astype(float),
             "curve_flag": raw["curve_flag"].str.upper(),
+            # Optional: only files whose header has 'Tipología de Oferta'; otherwise None.
+            "offer_type": raw["offer_type"].where(raw["offer_type"] != "", None) if has_type else None,
             "source_file": source_file,
         }
     )

@@ -1,6 +1,6 @@
 # Data sources and provenance
 
-Last updated: 2026-11-14
+Last updated: 2026-11-16
 
 This repository is an independent public portfolio project. It uses only public market information and independently developed code. Raw OMIE files are **not** committed to the repository.
 
@@ -10,8 +10,13 @@ This repository is an independent public portfolio project. It uses only public 
 - **Dataset:** Aggregate supply and demand curves of Day-ahead market
 - **Official directory:** https://www.omie.es/en/file-access-list?dir=Aggregate+supply+and+demand+curves+of+Day-ahead+market&parents=%2FDay-ahead+Market%2F3.+Curves&realdir=curva_pbc
 - **Observed naming convention:** `curva_pbc_YYYYMMDD.N` (N = revision; `.1` for all 731 days in 2023–2024)
-- **Target coverage:** 2023-01-01 through 2024-12-31
-- **Coverage status:** PARTIALLY VERIFIED. The official directory visibly contains files at the start/end of the requested period and throughout the period. Full day-by-day completeness has not yet been machine-audited because the current execution environment cannot retrieve OMIE's binary download response.
+- **Target coverage:** 2023-01-01 through 2024-12-31 (production pipeline). An extension adds 2025-01-01 – 2025-09-30, the last hourly period before the 15-minute MTU, as a confirmation sample.
+- **Coverage status:** VERIFIED. 731/731 days for 2023–2024 and 273/273 days for 2025-01 – 2025-09, all revision `.1`. See `reports/metrics/raw_coverage.json` and `reports/extension/raw_coverage.json`.
+- **Schema change on 2025-03-19 (verified on real files):** the header becomes `Periodo;Fecha;Pais;Unidad;Tipo Oferta;Potencia Compra/Venta;Precio Compra/Venta;Ofertada (O)/Casada (C);Tipología de Oferta;`.
+  - Periods remain hourly integers, so MW × 1 h = MWh.
+  - The new 9th column labels rows `S` (simple), `C01`/`C02`/`C04` (offers with complex conditions; codes not decoded from official documentation), and coupling rows in matched curves (`Imp FR`, `Exp FR`, `Imp/Exp ES/PT`).
+  - The parser keeps this column as `offer_type`; it is `None` for earlier files.
+- **2025-10-01 onwards:** quarter-hour periods (`H1Q1`, …). This is out of scope, and the parser fails closed on it.
 - **Download route used by OMIE File Access links:** `https://www.omie.es/en/file-download?filename=<filename>&parents=curva_pbc`
 - **Documented file format for the 2023–2024 hourly regime:** public text records separated by semicolons. The public-format documentation identifies fields for hour, date, country, unit, bid side, energy, price, and offered/matched flag.
 - **Relevant variables:**
@@ -26,7 +31,7 @@ This repository is an independent public portfolio project. It uses only public 
 - **Ordering documented by OMIE:** purchase records are ordered from higher to lower price; sale records from lower to higher price. Multiple records may occur at the same price and must not be treated as cumulative values.
 - **Project interpretation:** the raw energy field is treated as an incremental contribution. Cumulative supply and demand functions are constructed by summing increments at/through price levels. This must still be validated against a real downloaded file before empirical use.
 - **Cleaning planned:** decode robustly, parse locale-formatted numbers, retain source filename, aggregate same-price increments, preserve 23/24/25-hour days, reject non-finite/negative quantities, and record country/curve flags.
-- **Missing observations:** not yet machine-verified.
+- **Missing observations:** none (machine-verified).
 
 ### Official format documentation used
 
@@ -41,8 +46,8 @@ This version is appropriate to the 2023–2024 hourly market representation. It 
 - **Dataset:** Day-ahead market hourly prices in Spain (`MARGINALPDBC`)
 - **Official directory:** https://www.omie.es/en/file-access-list?dir=+Day-ahead+market+hourly+prices+in+Spain&parents=%2FDay-ahead+Market%2F1.+Prices&realdir=marginalpdbc
 - **Observed naming convention:** `marginalpdbc_YYYYMMDD.N` (N = revision; 2023-05-28 is published only as `.2`)
-- **Target coverage:** 2023-01-01 through 2024-12-31
-- **Coverage status:** PARTIALLY VERIFIED for the same execution-environment reason as the curve files.
+- **Target coverage:** 2023-01-01 through 2024-12-31, plus the 2025-01-01 – 2025-09-30 extension.
+- **Coverage status:** VERIFIED: 731/731 and 273/273 days. From 2025-10-01 the file has 96 quarter-hour periods, which is out of scope.
 - **Download route:** `https://www.omie.es/en/file-download?filename=<filename>&parents=marginalpdbc`
 - **Documented variables:** year, month, day, hour/period, Portuguese marginal price, Spanish marginal price.
 - **Units:** EUR/MWh.
@@ -91,4 +96,5 @@ The earlier build environment could not download the binary files. In a normal i
 - parser/downloader implementation: **VERIFIED** on all 1 462 files for 2023–2024;
 - inspection of representative real raw observations: **VERIFIED** (encoding ISO-8859-1, CRLF, `;` separator; Spanish number format in curve files; Spain = column 6 of `marginalpdbc`);
 - full 2023–2024 completeness audit: **VERIFIED**, 731/731 days per dataset;
+- 2025-01 – 2025-09 extension: **VERIFIED**, 273/273 days per dataset, all files pass schema and DST validation (`reports/extension/data_quality.json`);
 - empirical curve-clearing validation: **EXECUTED, gate FAILED**; see `results.md`.

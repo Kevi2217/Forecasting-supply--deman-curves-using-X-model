@@ -1,0 +1,30 @@
+{
+  "curves": {
+    "directory": "data\\raw\\curves",
+    "prefix": "curva_pbc",
+    "expected_days": 1004,
+    "days_present": 1004,
+    "missing_days": [],
+    "missing_count": 0,
+    "multiple_versions": {},
+    "out_of_range_days": [
+      "20251001"
+    ],
+    "unrecognised_files": [],
+    "status": "VERIFIED"
+  },
+  "prices": {
+    "directory": "data\\raw\\prices",
+    "prefix": "marginalpdbc",
+    "expected_days": 1004,
+    "days_present": 1004,
+    "missing_days": [],
+    "missing_count": 0,
+    "multiple_versions": {},
+    "out_of_range_days": [
+      "20251001"
+    ],
+    "unrecognised_files": [],
+    "status": "VERIFIED"
+  }
+}

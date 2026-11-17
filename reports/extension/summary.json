@@ -1,0 +1,254 @@
+{
+  "status": "EXECUTED - curve-based results EXPLORATORY; production clearing gate still FAILED (unchanged)",
+  "protocol": "reports/preregistration_curve_extension.md (with Amendment 1)",
+  "n_classes": 40,
+  "periods": {
+    "train": [
+      "2023-01-08",
+      "2024-06-30",
+      12953
+    ],
+    "validation": [
+      "2024-07-01",
+      "2024-09-30",
+      2208
+    ],
+    "evaluation": [
+      "2024-10-01",
+      "2025-09-30",
+      8757
+    ]
+  },
+  "walk_forward_months": [
+    "2023-07",
+    "2025-09"
+  ],
+  "exclusions": {
+    "exploratory_2024Q4": {
+      "total_intervals": 2209,
+      "common_finite": 2209,
+      "excluded": 0,
+      "non_finite_by_column": {
+        "price_es_eur_mwh": 0,
+        "weekly_persistence_prediction": 0,
+        "direct_elastic_net_prediction": 0,
+        "direct_hgb_prediction": 0,
+        "curve_elastic_net_prediction": 0,
+        "curve_hgb_prediction": 0,
+        "adjusted_curve_elastic_net_prediction": 0,
+        "adjusted_curve_hgb_prediction": 0,
+        "bias_baseline_curve_elastic_net_prediction": 0,
+        "bias_baseline_curve_hgb_prediction": 0,
+        "obs_adjusted_curve_elastic_net_prediction": 0,
+        "obs_adjusted_curve_hgb_prediction": 0
+      }
+    },
+    "confirmation_2025": {
+      "total_intervals": 6551,
+      "common_finite": 6548,
+      "excluded": 3,
+      "non_finite_by_column": {
+        "price_es_eur_mwh": 3,
+        "weekly_persistence_prediction": 3,
+        "direct_elastic_net_prediction": 3,
+        "direct_hgb_prediction": 3,
+        "curve_elastic_net_prediction": 3,
+        "curve_hgb_prediction": 3,
+        "adjusted_curve_elastic_net_prediction": 3,
+        "adjusted_curve_hgb_prediction": 3,
+        "bias_baseline_curve_elastic_net_prediction": 3,
+        "bias_baseline_curve_hgb_prediction": 3,
+        "obs_adjusted_curve_elastic_net_prediction": 3,
+        "obs_adjusted_curve_hgb_prediction": 3
+      }
+    }
+  },
+  "curve_validity": {
+    "elastic_net": {
+      "negative_raw_class_predictions_clipped_to_zero": 84901,
+      "class_predictions_total": 1579680,
+      "share": 0.05374569533069989,
+      "implied_price_status_counts": {
+        "OK": 19746
+      }
+    },
+    "hgb": {
+      "negative_raw_class_predictions_clipped_to_zero": 16142,
+      "class_predictions_total": 1579680,
+      "share": 0.01021852527094095,
+      "implied_price_status_counts": {
+        "OK": 19746
+      }
+    }
+  },
+  "headline": [
+    {
+      "period": "exploratory_2024Q4",
+      "model": "Weekly Persistence",
+      "column": "weekly_persistence_prediction",
+      "role": "primary",
+      "n": 2209,
+      "mae": 37.291561792666364,
+      "rmse": 48.93127895166939,
+      "bias": -5.819547306473517,
+      "median_absolute_error": 28.86,
+      "mae_improvement_vs_persistence_pct": 0.0
+    },
+    {
+      "period": "exploratory_2024Q4",
+      "model": "Direct Elastic Net",
+      "column": "direct_elastic_net_prediction",
+      "role": "primary",
+      "n": 2209,
+      "mae": 22.629395924755002,
+      "rmse": 29.531795675390182,
+      "bias": -2.810399727641443,
+      "median_absolute_error": 17.613085778022818,
+      "mae_improvement_vs_persistence_pct": 39.317650329128284
+    },
+    {
+      "period": "exploratory_2024Q4",
+      "model": "Direct Gradient Boosting",
+      "column": "direct_hgb_prediction",
+      "role": "primary",
+      "n": 2209,
+      "mae": 23.172523810980106,
+      "rmse": 29.990946712936548,
+      "bias": -4.0618729890318646,
+      "median_absolute_error": 18.35201205140615,
+      "mae_improvement_vs_persistence_pct": 37.86121391264139
+    },
+    {
+      "period": "exploratory_2024Q4",
+      "model": "Unadjusted Curve-Based Elastic Net (exploratory)",
+      "column": "curve_elastic_net_prediction",
+      "role": "primary",
+      "n": 2209,
+      "mae": 33.72880130371035,
+      "rmse": 43.63619896794501,
+      "bias": -24.05733689921356,
+      "median_absolute_error": 27.658000551701136,
+      "mae_improvement_vs_persistence_pct": 9.553798011368508
+    },
+    {
+      "period": "exploratory_2024Q4",
+      "model": "Unadjusted Curve-Based Gradient Boosting (exploratory)",
+      "column": "curve_hgb_prediction",
+      "role": "primary",
+      "n": 2209,
+      "mae": 34.69880961255752,
+      "rmse": 43.599104830426285,
+      "bias": -25.486408831110143,
+      "median_absolute_error": 30.568000551701132,
+      "mae_improvement_vs_persistence_pct": 6.952651097114226
+    },
+    {
+      "period": "exploratory_2024Q4",
+      "model": "Adjusted Curve-Based Elastic Net",
+      "column": "adjusted_curve_elastic_net_prediction",
+      "role": "primary",
+      "n": 2209,
+      "mae": 24.44010638493401,
+      "rmse": 31.785191828690653,
+      "bias": -10.84402499371502,
+      "median_absolute_error": 19.443368490681543,
+      "mae_improvement_vs_persistence_pct": 34.462100244510765
+    },
+    {
+      "period": "exploratory_2024Q4",
+      "model": "Adjusted Curve-Based Gradient Boosting",
+      "column": "adjusted_curve_hgb_prediction",
+      "role": "primary",
+      "n": 2209,
+      "mae": 23.48870272868337,
+      "rmse": 31.215364120061405,
+      "bias": -5.985361654587851,
+      "median_absolute_error": 17.543936462116804,
+      "mae_improvement_vs_persistence_pct": 37.01335744725343
+    },
+    {
+      "period": "confirmation_2025",
+      "model": "Weekly Persistence",
+      "column": "weekly_persistence_prediction",
+      "role": "primary",
+      "n": 6548,
+      "mae": 28.17732895540623,
+      "rmse": 40.72953237102646,
+      "bias": 1.6009544899205863,
+      "median_absolute_error": 18.125,
+      "mae_improvement_vs_persistence_pct": 0.0
+    },
+    {
+      "period": "confirmation_2025",
+      "model": "Direct Elastic Net",
+      "column": "direct_elastic_net_prediction",
+      "role": "primary",
+      "n": 6548,
+      "mae": 18.852441591496586,
+      "rmse": 25.37872547112291,
+      "bias": 1.286075767957739,
+      "median_absolute_error": 14.15870091882286,
+      "mae_improvement_vs_persistence_pct": 33.09358164738511
+    },
+    {
+      "period": "confirmation_2025",
+      "model": "Direct Gradient Boosting",
+      "column": "direct_hgb_prediction",
+      "role": "primary",
+      "n": 6548,
+      "mae": 17.762322431041643,
+      "rmse": 24.78758850248721,
+      "bias": 2.3495657276993214,
+      "median_absolute_error": 12.31455282907861,
+      "mae_improvement_vs_persistence_pct": 36.962362688271476
+    },
+    {
+      "period": "confirmation_2025",
+      "model": "Unadjusted Curve-Based Elastic Net (exploratory)",
+      "column": "curve_elastic_net_prediction",
+      "role": "primary",
+      "n": 6548,
+      "mae": 28.379617217987143,
+      "rmse": 40.59899935503692,
+      "bias": -21.28653261143426,
+      "median_absolute_error": 19.295603448630963,
+      "mae_improvement_vs_persistence_pct": -0.7179114205645876
+    },
+    {
+      "period": "confirmation_2025",
+      "model": "Unadjusted Curve-Based Gradient Boosting (exploratory)",
+      "column": "curve_hgb_prediction",
+      "role": "primary",
+      "n": 6548,
+      "mae": 25.906438282012953,
+      "rmse": 37.39141922720203,
+      "bias": -19.225155689722296,
+      "median_absolute_error": 17.208910025276396,
+      "mae_improvement_vs_persistence_pct": 8.05928296818771
+    },
+    {
+      "period": "confirmation_2025",
+      "model": "Adjusted Curve-Based Elastic Net",
+      "column": "adjusted_curve_elastic_net_prediction",
+      "role": "primary",
+      "n": 6548,
+      "mae": 21.99966014840414,
+      "rmse": 29.890361445207237,
+      "bias": -5.4728475278978115,
+      "median_absolute_error": 14.905901312429798,
+      "mae_improvement_vs_persistence_pct": 21.924252709612546
+    },
+    {
+      "period": "confirmation_2025",
+      "model": "Adjusted Curve-Based Gradient Boosting",
+      "column": "adjusted_curve_hgb_prediction",
+      "role": "primary",
+      "n": 6548,
+      "mae": 20.405856252068734,
+      "rmse": 27.50353788030363,
+      "bias": -1.1674992029954165,
+      "median_absolute_error": 14.521901105062309,
+      "mae_improvement_vs_persistence_pct": 27.580586916654592
+    }
+  ]
+}

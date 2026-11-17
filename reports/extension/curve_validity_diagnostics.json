@@ -1,0 +1,19 @@
+{
+  "note": "Forecast class volumes are clipped at zero (documented production post-processing); curves are then rebuilt as monotone step functions at training-derived class prices, so every forecast curve is economically valid (non-decreasing supply, non-increasing demand, non-negative volumes).",
+  "elastic_net": {
+    "negative_raw_class_predictions_clipped_to_zero": 84901,
+    "class_predictions_total": 1579680,
+    "share": 0.05374569533069989,
+    "implied_price_status_counts": {
+      "OK": 19746
+    }
+  },
+  "hgb": {
+    "negative_raw_class_predictions_clipped_to_zero": 16142,
+    "class_predictions_total": 1579680,
+    "share": 0.01021852527094095,
+    "implied_price_status_counts": {
+      "OK": 19746
+    }
+  }
+}

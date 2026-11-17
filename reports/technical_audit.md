@@ -1,56 +1,74 @@
 # Independent technical audit
 
-Date: 2026-11-16 (supersedes the 2026-11-14 pre-data audit).
+Date: 2026-11-16. Supersedes the earlier audits of 2026-11-14 and of the morning of 2026-11-16.
 
-Scope: execution on real OMIE data for delivery dates 2023-01-01 – 2024-12-31, in a local Python 3.12.10 virtual environment (numpy 2.5.5, pandas 2.3.3, scikit-learn 1.9.1).
+Scope:
+- Production pipeline on 2023-01-01 – 2024-12-31.
+- Clearing-discrepancy audit and exploratory/adjusted curve extension on 2023-01-01 – 2025-09-30.
+- Environment: Python 3.12.10 virtual environment (numpy 2.5.5, pandas 2.3.3, scikit-learn 1.9.1).
 
 ## Summary verdict
 
-The data pipeline works on real OMIE files and passes every data gate. The **observed-curve clearing feasibility gate fails** (MAE 26.14 EUR/MWh against a pre-specified limit of 10). The audit attributes this to the content of OMIE's published offered curves, not to a coding error. The curve-based forecasting stages were therefore not executed. The gate was not weakened or bypassed. The curve-independent benchmarks were evaluated out of sample.
+- **Data.** All 2 008 OMIE files are real, complete and validated, including the 2025-03-19 schema change.
+- **Production gate.** The observed-curve clearing gate **fails** (MAE 26.14 vs ≤ 10) and was **not** weakened. `run_project.py` and `configs/default.yaml` are unchanged in logic and thresholds.
+- **Cause of the failure.** The audit locates it in the content of OMIE's offered curves, not in the code: the same clearing algorithm reproduces the price on matched curves (MAE 0.43).
+- **Curve models.** They were run only in a separate, pre-registered exploratory path.
+- **Leakage.** No look-ahead was found in features, classes, hyperparameters or the correction.
+- **Labelling.** 2024-Q4 is labelled exploratory; 2025-01 – 09 is a quasi-holdout (see results §4).
 
 ## Audit table
 
 | Question | Status | Evidence |
 |---|---|---|
-| Are the data real and correctly sourced? | VERIFIED | 731 + 731 official files from `omie.es/en/file-download`, with SHA-256 and provenance sidecars. One price day exists only as revision `.2` (`marginalpdbc_20230528.2`). |
-| Have source schemas been verified on real bytes? | VERIFIED | ISO-8859-1, CRLF, `;`-separated. Curve numbers use Spanish formatting (`1.500,00`); price files use dot decimals. Header `Hora;Fecha;Pais;Unidad;Tipo Oferta;Energía Compra/Venta;Precio Compra/Venta;Ofertada (O)/Casada (C)`. |
-| Is the Spanish price column correct? | VERIFIED | During the 2024-01-01 h11 split, the `ES` matched curve ends at 25.00 = column 6 and `PT` at 35.61 = column 5. Column 6 is Spain. |
-| DST handling | VERIFIED | Period counts match Europe/Madrid civil-day length on every file (23 h: 2023-03-26, 2024-03-31; 25 h: 2023-10-29, 2024-10-27). The validator now enforces this exactly. 17 544 unique UTC intervals. |
-| Curve geography | VERIFIED | OMIE publishes `ES`/`PT` curves (no `MI`) in every split hour (1 058) and `MI` otherwise (16 486). No `MI` interval has an ES/PT price split, so 0 exclusions. |
-| Are curves economically valid? | VERIFIED | Monotone cumulative supply and demand on every interval. Matched buy = matched sell volume per country. Prices lie within −500 to 3 000 EUR/MWh. |
-| Does clearing handle step functions correctly? | TESTED + VERIFIED | Vectorised implementation is identical to the original masked-sum implementation on 71 real intervals. 0 no-crossing results; 3 ambiguous. |
-| Is the clearing approximation suitable for this data? | **NO — gate FAILED** | MAE 26.14, bias −24.67. Near-exact at ≤ 0 prices (MAE ≤ 0.41) but MAE 26–34 above 20 EUR/MWh. Worst in the evening (~45 at 19–20 h). |
-| Why does clearing fail? | EXPLAINED (ex post) | 84 % of intervals have > 500 MWh of supply offered ≤ p\* that was not matched (mean 4.55 GWh); corr(error, unmatched) = −0.71. Matched demand missing from the offered curve (coupling exports) adds to it (corr −0.22). Consistent with EUPHEMIA complex-order rejections and interconnection flows absent from the published offered curves. |
-| Could this be a coding error? | Unlikely | Demand-side volumes reconcile with matched curves. The error vanishes when renewables set the price and is one-sided. The geography check passes. Parsing was cross-checked with `awk` on raw bytes. |
-| Price-class leakage | NOT EXECUTED (by design) | Code fits classes only on training files. Not run because the gate failed. |
-| Forecast curve validity / class volumes | NOT EXECUTED | Blocked by the gate. |
-| Features available at issue time | VERIFIED (benchmarks) | The day-D curve file header shows issue at ~12:55 on D−1, so D−1 results are public before the D−1 12:00 gate. Features use lags ≥ 1 day only. |
-| DST alignment of lags/persistence | FIXED + VERIFIED | Previously lags joined on OMIE period number, misaligning 2024-10-27 and the following week by one hour and leaving period 25 unlagged. They now join on local wall-clock hour (first occurrence of the repeated hour). Spot-checked against raw files. |
-| Chronological splits | VERIFIED | Train 2023-01-08 – 2024-06-30 (12 953), validation 2024-07-01 – 09-30 (2 208), test 2024-10-01 – 12-31 (2 209). |
-| Hyperparameters chosen without test data | VERIFIED | Selected on validation only; test uses monthly expanding refits with fixed hyperparameters. |
-| Scalers fitted on past data only | VERIFIED | `StandardScaler` sits inside the sklearn `Pipeline` fitted per training window. |
-| Same test observations for all models | VERIFIED | Common finite mask: 2 209 / 2 209 test intervals; 0 excluded. |
-| MAE/RMSE correct | TESTED | Deterministic unit tests. Reruns reproduce metrics exactly. |
-| Official prices from the prediction period in features | NONE | Only official-price lags of 1, 2 and 7 days. |
-| Figures from real outputs | VERIFIED | Figures 1, 4, 5, 6 are generated by executed scripts on real data. Figures 2, 3, 7 are not produced because they are gated. |
+| Data real and correctly sourced? | VERIFIED | 1 004 + 1 004 official files with SHA-256 provenance sidecars. One price day exists only as revision `.2`. |
+| Schema verified on real bytes? | VERIFIED | ISO-8859-1, `;`, Spanish number format. A 9-column schema (`Periodo`, `Potencia`, `Tipología de Oferta`) from 2025-03-19 is parsed as optional `offer_type`. Quarter-hour files (from 2025-10-01) fail closed. |
+| Spanish price column | VERIFIED | Column 6, checked on a split hour |
+| DST handling | VERIFIED | Exact 23/24/25 periods; 24 095 unique UTC intervals |
+| Clearing implementation correct? | VERIFIED | Matched × matched crossing MAE 0.43, median AE 0. p\* lies within the matched bracket in 99.5 % of intervals. The audit's `p_offered` equals the production observed-clearing table exactly (max difference 0.0, 17 544 intervals). |
+| Why does the gate fail? | EXPLAINED (association + accounting) | Swapping offered supply for matched supply cuts MAE from 24.6 to 5.6. Error vs unaccepted cheap supply: r = −0.71. From 2025-03-19, all unaccepted cheap supply is complex-condition-labelled. Causality is not identified (`clearing_discrepancy_audit.md` §5). |
+| Gate weakened or bypassed? | NO | The production runner still exits `FAILED`. Curve models ran only in `run_curve_extension.py`, with every output labelled exploratory. |
+| Price classes training-only; k selected on validation only? | VERIFIED | Classes are fitted on 2023-01-01 – 2024-06-30 files. k = 40 is chosen on 2024-Q3 compression error (14.07 / 6.15 / 3.60 for k = 10 / 20 / 40). A recomputation reproduced the cached specification exactly before modelling. |
+| Hyperparameters chosen without evaluation data | VERIFIED | Selected on 2024-Q3 only (`extension/model_selection.json`). Direct selections are identical to the standalone benchmark run. |
+| Correction uses only pre-auction information | VERIFIED + TESTED | Predictors: forecast-curve state, ≥ 1-day lags of discrepancy / unaccepted volume / demand gap, calendar. The D−1 files are issued around 12:55 on D−2. A unit test asserts that no post-auction column enters unlagged. |
+| Correction trained only on the past | VERIFIED | Refitted monthly on out-of-fold rows dated before the forecast month. The constant baseline uses 2023-07 – 2024-06 only. |
+| Out-of-fold curve forecasts genuinely out-of-fold | VERIFIED | Each family-month refit trains on dates strictly before the month (`expanding_monthly_predictions`, `dates < month_start`). |
+| Hyperparameters informed by validation used for training-period out-of-fold forecasts | DISCLOSED | No evaluation data involved; slight optimism possible in the correction's training errors |
+| Same evaluation intervals and forecast origins for all models | VERIFIED | Common finite mask: 2 209/2 209 (2024-Q4), 6 548/6 551 (2025). The 3 exclusions are lag-source hours missing on the 23-hour DST day, excluded for every model. |
+| Economically valid forecast curves | VERIFIED | Non-negative class volumes (5.4 % EN and 1.0 % HGB raw negatives clipped, reported), monotone step curves, 19 746/19 746 crossings |
+| Decomposition correct | TESTED | Signed identities (1+2+3; 3+4) are asserted numerically in code and in a unit test. MAE/RMSE are reported per component and never summed. |
+| MAE/RMSE/DM correct | TESTED | Deterministic metric tests; a DM test-statistic sign/power test |
+| Scalers fitted on past data only | VERIFIED | `StandardScaler` sits inside each sklearn `Pipeline` |
+| Independence / confidentiality | VERIFIED | No references to employers, collaborations or confidential research |
 
-## Defects found and fixed during execution
+## Defects found and fixed
 
-1. **Repository layout lost.** The commit was a flattened web upload with renamed collisions (`__init__ (3).py`, `download (10)`), and the working tree held an older, filename-scrambled copy. The scrambled copy is preserved in `git stash@{0}`. The `src/`, `scripts/`, `tests/`, `configs/` and `reports/` layout was rebuilt from module imports and package docstrings.
-2. **Parser performance (≈ 40× speedup).** `dict.setdefault(key, f())` evaluated the DST map for every one of ~82 k rows per file, taking 28.6 s per file. The parser is now vectorised at 0.7 s per file with identical output.
-3. **Silent row skipping.** Malformed curve data rows were dropped silently. They now raise an error (fail closed).
-4. **DST validation gap.** The validator accepted any 23/24/25-period day. It now requires the exact Europe/Madrid length.
-5. **OMIE file revisions.** The downloader assumed the `.1` suffix and crashed on a 404. It now probes `.1`–`.5` without retrying 404s, and the dataset iterators use the latest local revision.
-6. **DST misalignment of lags and weekly persistence.** Fixed as described above. Persistence now uses the complete official price series rather than the model-filtered subset.
-7. **Step-curve evaluation** was O(n²). It is now O(n log n) and verified identical on real intervals.
+1. **Repository layout lost.** The commit was a flattened upload and the working tree was a filename-scrambled copy (preserved in `git stash@{0}`). Layout rebuilt.
+2. **Parser performance.** About 40× speedup by vectorising.
+3. **Silent row skipping.** Malformed rows now fail closed.
+4. **DST validation gap.** Period counts must now equal the exact day length.
+5. **File revisions.** `.1`–`.5` are probed; the latest revision is used.
+6. **DST misalignment of lags and persistence.** Lags now join on local wall-clock hour.
+7. **O(n²) step-curve evaluation.** Now O(n log n).
+8. **2025 schema: offer-typology column silently dropped.** The parser kept only 8 fields. It now keeps the optional `offer_type` column and pads short rows instead of skipping them.
+9. **Walk-forward cache contamination risk.** Found in a dry run: a toy configuration wrote into the shared cache. The cache was deleted, and refits are now keyed by a configuration hash and refused on mismatch.
 
 ## Tests
 
-`pytest -q`: **35 passed, 0 failed** (29 original plus 6 new tests: malformed rows, vectorised number parsing, DST-exact validation, hour-aligned lag on a 25 h day, persistence after the spring DST change, and download revision probing).
+`pytest -q`: **45 passed, 0 failed.** That is 35 previous tests plus 10 new ones:
+- offer-type parsing (2);
+- the clearing audit on synthetic offered/matched curves (3);
+- trailing-median look-ahead;
+- forecast vs observed curve state;
+- no unlagged post-auction predictors;
+- DM test;
+- decomposition identities.
 
 ## Remaining limitations
 
-- The X-Model-inspired curve forecasting hypothesis is **untested on this data**. Its prerequisite (observed curves reproduce the price) does not hold for naive crossing of OMIE offered curves.
-- Any corrected clearing method (for example, modelling rejected complex-order volume or net coupling flows as additional forecast targets) would be a methodology change. It should be pre-registered before being run, not tuned against the gate.
-- Benchmarks use only calendar and price lags; no load, wind or solar forecasts are used.
-- The test window is one quarter (Q4 2024) and contains only 5 negative-price hours.
+- **The curve approach does not beat direct forecasting** on the 2025 quasi-holdout (MAE +2.6 to +3.1, p ≤ 0.001).
+- **2025 is not a perfectly untouched holdout.** The clearing audit inspected 2025 observed curves before Amendment 1. The clearing discrepancy also shifts structurally around the 2025-03-19 offer-typology change, so 2025 tests robustness to a regime change, not stationarity.
+- **The correction is regime-blind.** It harms the curve models in negative-price hours, where clearing is near-exact. A regime-dependent correction would need fresh untouched data to evaluate.
+- **The production curve-model selection criterion is dominated by near-empty classes.** It scales class MAE by max(mean |y|, 1), so the curve validation scores of 7.25 / 8.45 are dominated by classes with tiny volumes. It was kept for fidelity to the production design.
+- **Independent class-volume models** ignore multivariate curve dependence.
+- **No public pre-auction load, wind or solar forecasts** are used by any model.
+- **The `C01`/`C02`/`C04` codes are not decoded** from official documentation.

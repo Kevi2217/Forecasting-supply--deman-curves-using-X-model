@@ -1,124 +1,114 @@
 # Day-Ahead Electricity Price Forecasting from Auction Curves
 
-An independent quantitative research and machine-learning portfolio project inspired by the X-Model literature. The project asks whether forecasting the *structure* of a day-ahead electricity auction can produce useful Spanish electricity-price forecasts compared with forecasting the price directly.
+An independent quantitative research and machine-learning portfolio project inspired by the X-Model literature. It asks whether forecasting the *structure* of the Spanish day-ahead auction (supply and demand curves) yields better price forecasts than forecasting the price directly.
 
-## Status (executed 2026-11-16 on real OMIE data, 2023-01-01 – 2024-12-31)
+## Headline findings (real OMIE data, 2023-01 – 2025-09)
 
-**Data pipeline: VERIFIED. Curve-clearing feasibility gate: FAILED. Overall empirical project: INCOMPLETE.**
+1. **Public offered curves do not reproduce the official price.** A naive stepwise crossing has MAE 26.14 EUR/MWh (bias −24.67), so the project's pre-specified feasibility gate (MAE ≤ 10) **fails**. The gate is kept and the production pipeline still stops there.
+2. **The cause is in the data, not the code.** The same algorithm reproduces the price on OMIE's *matched* curves (MAE 0.43). The gap comes mainly from cheap complex-condition offers that the market algorithm rejects and that are invisible before the auction. This is shown by association and accounting, not by causal identification.
+3. **Curve models were run as a separately labelled exploratory experiment**, with a pre-registered dynamic correction P_adj = P_curve + ĝ(X).
+4. **The correction works relative to the unadjusted curve models.** On the 2025 quasi-holdout it cuts curve-model MAE by 5.5–6.4 EUR/MWh (p ≤ 0.001) and beats a constant-bias baseline (p < 0.001).
+5. **The curve approach does not beat direct price forecasting.** It is tied on 2024-Q4 and significantly worse on 2025 (+2.6 to +3.1 EUR/MWh MAE).
 
-- All 1 462 official OMIE files (731 curve days, 731 price days) were downloaded, parsed and validated, including DST-exact period counts.
-- Naive clearing of the published *offered* supply/demand curves misses the official Spanish price by **MAE 26.14 EUR/MWh (bias −24.67)**. The pre-specified gate is MAE ≤ 10.
-- The pipeline therefore stops before price-class compression and curve-based forecasting, as designed. **The curve-based (X-Model-inspired) models were not trained, and no performance is claimed for them.**
-- The curve-independent benchmarks were evaluated out of sample on Q4-2024 (N = 2 209).
+## Model comparison
 
-Details: [`reports/results.md`](reports/results.md), [`reports/technical_audit.md`](reports/technical_audit.md), [`reports/execution_status.md`](reports/execution_status.md).
+All models in a period are scored on identical intervals and forecast origins, with monthly expanding refits. EUR/MWh; bias = mean(prediction − actual).
 
-## Research question
+| Model | 2024-Q4 MAE | RMSE | Bias | **2025 MAE** | RMSE | Bias | 2025 vs persistence |
+|---|---|---|---|---|---|---|---|
+| Weekly Persistence | 37.29 | 48.93 | −5.82 | 28.18 | 40.73 | +1.60 | — |
+| Direct Elastic Net | **22.63** | 29.53 | −2.81 | 18.85 | 25.38 | +1.29 | +33.1 % |
+| Direct Gradient Boosting | 23.17 | 29.99 | −4.06 | **17.76** | 24.79 | +2.35 | +37.0 % |
+| Unadjusted Curve-Based Elastic Net *(exploratory)* | 33.73 | 43.64 | −24.06 | 28.38 | 40.60 | −21.29 | −0.7 % |
+| Unadjusted Curve-Based Gradient Boosting *(exploratory)* | 34.70 | 43.60 | −25.49 | 25.91 | 37.39 | −19.23 | +8.1 % |
+| Adjusted Curve-Based Elastic Net | 24.44 | 31.79 | −10.84 | 22.00 | 29.89 | −5.47 | +21.9 % |
+| Adjusted Curve-Based Gradient Boosting | 23.49 | 31.22 | −5.99 | 20.41 | 27.50 | −1.17 | +27.6 % |
 
-> Can forecasting the underlying day-ahead electricity auction supply and demand curves produce more accurate Spanish day-ahead electricity-price predictions than conventional direct price forecasting models?
+N = 2 209 (2024-Q4) and 6 548 of 6 551 (2025). The three 2025 exclusions are lag-source hours missing on the 23-hour DST day, and they are excluded from every model.
 
-The price is an outcome of the interaction between supply and demand curves. A curve model might therefore preserve information about market elasticity and nonlinear price sensitivity that a direct model does not represent.
+**Labels.**
+- *2024-Q4* is **exploratory**: the direct benchmarks had already been examined on it.
+- *2025-01 – 09* is a **quasi-holdout**. All choices were frozen on 2024-Q3 before any 2025 forecast existed. However, 2025 observed curves were inspected in the clearing audit, and the clearing discrepancy shifts structurally after OMIE's 2025-03-19 offer-typology change.
 
-## Relationship to the X-Model
+Full detail: [`reports/results.md`](reports/results.md). Audit: [`reports/clearing_discrepancy_audit.md`](reports/clearing_discrepancy_audit.md). Protocol: [`reports/preregistration_curve_extension.md`](reports/preregistration_curve_extension.md). Status: [`reports/execution_status.md`](reports/execution_status.md), [`reports/technical_audit.md`](reports/technical_audit.md).
 
-The X-Model (Ziel & Steinert, 2016) reduces auction curves to price classes, forecasts class-level volumes, reconstructs the curves and derives an implied clearing price. This repository follows that structural idea (it is *X-Model-inspired*, not a replication) with **Elastic Net** and **Histogram Gradient Boosting** class-volume models.
+## Research question and relation to the X-Model
 
-## Empirical results
+> Can forecasting day-ahead auction supply and demand curves produce more accurate Spanish day-ahead price predictions than direct price models?
 
-### Data
+The X-Model (Ziel & Steinert, 2016):
+1. compresses auction curves into price classes;
+2. forecasts the class volumes;
+3. reconstructs the curves;
+4. derives the implied clearing price.
 
-| Item | Value |
-|---|---|
-| Period | 2023-01-01 – 2024-12-31 (731 delivery days) |
-| Intervals | 17 544 hourly (DST days: 23 h on 2023-03-26, 2024-03-31; 25 h on 2023-10-29, 2024-10-27) |
-| Curve geography | Iberian `MI` curves in 16 486 hours; Spanish `ES` curves in all 1 058 market-split hours; 0 intervals excluded |
-| Data-quality gate | 1 462 / 1 462 files VERIFIED |
-| Split | train 2023-01-08 – 2024-06-30 (12 953; the first 7 days are lost to the 7-day lag) · validation 2024-07-01 – 09-30 (2 208) · test 2024-10-01 – 12-31 (2 209) |
+This repository follows that idea: training-only, energy-weighted price classes (k = 40 per side, chosen on validation) and Elastic Net / Histogram Gradient Boosting class-volume models. The adjusted model adds a statistical clearing correction. It is an **X-Model-inspired extension**, not a reproduction of the paper.
 
-### Clearing approximation vs official price (gate)
+## How the adjusted model works
 
-| n | MAE | RMSE | Bias | Median AE | p95 AE | Invalid |
-|---|---|---|---|---|---|---|
-| 17 544 | 26.14 | 35.65 | −24.67 | 20.28 | 74.34 | 0 % |
+P_adj,t = P_curve,t + ĝ(X_t)
 
-The approximation is almost exact when the price is zero or negative (MAE 0.10 / 0.41). The MAE rises to 26–34 when the price is above 20 EUR/MWh, and to about 45 in the 19:00–20:00 evening peak.
+- **Out-of-fold curve forecasts.** The curve models are refitted monthly (expanding window) and forecast every month from 2023-07 onwards.
+- **Target.** ĝ is trained on the realised errors of these out-of-fold forecasts.
+- **Predictors, all available before the D−1 12:00 gate closure:**
+  - the forecast curves' implied price and total volumes;
+  - 1-, 2- and 7-day lags of the clearing discrepancy, the unaccepted cheap supply and the demand gap;
+  - hour and weekday indicators.
+- **Never used as predictors:** same-day matched curves, rejected volumes, offer typology or official prices.
+- **Model choice.** A regularised Elastic Net was selected on validation. HGB was allowed only with a ≥ 5 % validation gain, which it did not achieve.
 
-An ex-post audit against OMIE's *matched* curves explains the gap:
-- In 84 % of hours, more than 500 MWh of supply offered at or below the official price was **not** accepted (mean 4.6 GWh). Its correlation with the clearing error is −0.71.
-- Matched demand also includes volume absent from the offered demand curve, consistent with market-coupling exports.
+## Error decomposition (2025, Gradient Boosting family)
 
-The published offered curves therefore do not encode EUPHEMIA's complex-order rejections or interconnection flows, so a naive crossing systematically clears too low.
+Signed means add exactly; MAEs do not.
 
-### Out-of-sample benchmark comparison (2024-10-01 – 2024-12-31)
-
-Monthly expanding-window refits; hyperparameters chosen on the validation quarter only; identical test observations for every model; EUR/MWh; bias = mean(prediction − actual).
-
-| Model | MAE | RMSE | Bias | N |
-|---|---|---|---|---|
-| Weekly Persistence | 37.29 | 48.93 | −5.82 | 2 209 |
-| Direct Elastic Net | **22.63** | **29.53** | −2.81 | 2 209 |
-| Direct Gradient Boosting | 23.17 | 29.99 | −4.06 | 2 209 |
-| Curve-Based Elastic Net | — not evaluated (clearing gate failed) | | | |
-| Curve-Based Gradient Boosting | — not evaluated (clearing gate failed) | | | |
-
-Both direct models beat persistence by about 39 % MAE. Elastic Net and HGB are practically tied with these lag/calendar features. All models under-predict high-price hours (≥ 140.21 EUR/MWh, the training-set 95th percentile; n = 308). The test quarter has only 5 negative-price hours, too few for conclusions.
-
-### Figures (`reports/figures/`)
-
-| Figure | Content |
-|---|---|
-| `figure1_observed_curves.png` | Offered (and ex-post matched) supply/demand curves, 2024-10-01 20:00, with approximate and official prices |
-| `figure4_direct_benchmarks_out_of_sample.png` | Official vs predicted prices, last two test weeks |
-| `figure5_direct_benchmark_comparison.png` | MAE/RMSE benchmark comparison |
-| `figure6_clearing_diagnostics.png` | Clearing approximation vs official: scatter, error distribution, error by hour |
-
-The price-class reconstruction, forecast-vs-observed curve and reconstruction-error figures (figures 2, 3, 7) are produced only after a passed clearing gate, so none exist. No synthetic substitute is provided.
+| Component | Signed mean | MAE |
+|---|---|---|
+| 1 Clearing approximation (P_obs − P_official) | −19.31 | 20.63 |
+| 2 Price-class compression (P_comp − P_obs) | +2.16 | 4.02 |
+| 3 Curve forecasting (P_curve − P_comp) | −2.08 | 17.35 |
+| 4 Adjustment estimation (ĝ − d) | +0.91 | 13.53 |
+| Total unadjusted (1+2+3) | −19.23 | 25.91 |
+| Total adjusted (3+4) | −1.17 | 20.41 |
 
 ## Interpretation
 
-1. **The curve-based hypothesis remains untested here, not refuted.** Its prerequisite, that observed public curves reproduce the price, fails for OMIE offered curves under a naive crossing. Any curve forecast would inherit an expected bias of about −25 EUR/MWh before forecasting error, which is larger than the direct models' entire MAE.
-2. **This is a data/market-design finding, not a code defect.** Demand-side volumes reconcile with matched curves, the error disappears in renewable-marginal hours, and it is one-sided where thermal units bidding with complex conditions are marginal.
-3. **A fix would be a methodology change.** For example, the rejected complex-order volume and net coupling flow could be treated as additional, forecastable curve shifts. Such a change should be specified in advance, before it is run against the gate.
+- The correction removes the clearing bias, but the day-to-day discrepancy is only partly predictable (component 4 MAE ≈ 14 EUR/MWh). That residual costs more than the structural information the curves add.
+- The curve models are best only where clearing is near-exact. In 2025 negative-price hours (n = 535), the unadjusted curve models have MAE 2.0–2.2, against 3.8–7.4 for the direct models.
+- The regime-blind linear correction loses that advantage. A regime-dependent correction is the obvious next step, but it needs fresh untouched data to be evaluated honestly.
 
-## Workflow
+## Figures (`reports/figures/`)
 
-```text
-OMIE raw files → coverage + schema + DST gates → UTC/local intervals
-→ observed cumulative curves → approximate stepwise clearing
-→ [GATE: clearing vs official Spanish price]  ← stops here on 2023–2024 data
-→ training-only price classes → compression validation
-→ leakage-safe class-volume features → Elastic Net / HGB
-→ forecast curves → implied price → common-sample walk-forward evaluation
-```
-
-Curve-independent benchmarks (`scripts/run_direct_benchmarks.py`) follow the same split, features, selection and walk-forward protocol using official prices only.
-
-## Market and data conventions
-
-- Curve files (`curva_pbc_YYYYMMDD.N`): ISO-8859-1, `;`-separated, Spanish number format. `C` = purchase, `V` = sale; `O` = offered, `C` = matched. OMIE serves only the latest revision `N` (one price day exists only as `.2`).
-- Price files (`marginalpdbc_YYYYMMDD.N`): column 5 = Portugal, **column 6 = Spain** (verified on a market-split hour).
-- Supply is accumulated low → high price and demand high → low. Same-price bids are aggregated.
-- Intervals are `Europe/Madrid` periods mapped to UTC. Lags and weekly persistence align on **local wall-clock hour**, so DST days are compared like-for-like.
-- Forecast features use only data from earlier delivery days. The day-D curve file is published around 12:55 on D−1, so D−1 results are public before the D−1 12:00 gate closure.
+| Figure | Content |
+|---|---|
+| `figure1_observed_curves.png` | Offered vs matched curves, 2024-10-01 20:00 |
+| `figure6_clearing_diagnostics.png`, `figure8_clearing_mechanism_audit.png` | Clearing gate diagnostics; monthly error by curve combination; error vs unaccepted volume |
+| `extension_figure2_price_class_reconstruction.png`, `extension_figure7_reconstruction_diagnostics.png` | 40-class reconstruction and compression error by k |
+| `extension_figure3_forecast_vs_observed_curves.png` | Forecast vs observed supply/demand curves (two fixed intervals) |
+| `extension_predictions_exploratory_2024Q4.png`, `extension_predictions_confirmation_2025.png` | Actual vs predicted prices |
+| `extension_model_comparison.png`, `extension_conditional_mae_by_hour.png` | Benchmark comparison; MAE by hour |
+| `extension_discrepancy_stability.png` | Stability of the clearing discrepancy |
+| `figure4_…`, `figure5_…` | Direct benchmarks (2024-Q4) |
 
 ## Repository structure
 
 ```text
-├── configs/default.yaml          # dates, splits, gates, model grids
+├── configs/default.yaml          # production pipeline (2023–2024, gates)
+├── configs/extension.yaml        # exploratory/adjusted extension (2023-01 – 2025-09)
 ├── src/electricity_forecasting/
-│   ├── data/                     # download, parse, coverage, validation
-│   ├── market/                   # curves, clearing, price classes, compression
+│   ├── data/                     # download, parse (incl. 2025 offer typology), coverage, validation
+│   ├── market/                   # curves, clearing, clearing_audit, price classes, compression
 │   ├── features/  models/  evaluation/  visualization/
 ├── scripts/
 │   ├── download_omie.py          # official raw files (+ provenance)
 │   ├── audit_raw_coverage.py     # completeness audit
-│   ├── inspect_data.py           # schema/quality of single files
-│   ├── run_project.py            # full fail-closed pipeline
-│   ├── run_direct_benchmarks.py  # curve-independent benchmarks
-│   └── audit_clearing_gap.py     # offered-vs-matched diagnostic
-├── tests/                        # 35 tests
+│   ├── run_project.py            # production pipeline; stops at the failed clearing gate
+│   ├── run_direct_benchmarks.py  # curve-independent benchmarks (2024-Q4)
+│   ├── audit_clearing_mechanism.py  # offered vs matched clearing audit (2023–2025)
+│   ├── run_curve_extension.py    # exploratory + adjusted curve models (cached stages)
+│   └── extension_significance.py # Diebold–Mariano comparisons
+├── tests/                        # 45 tests
 ├── data/{raw,interim,processed}/ # not committed
-└── reports/                      # results, audit, metrics/, figures/
+└── reports/                      # results, audits, protocol, metrics/, extension/, figures/
 ```
 
 ## Reproduce
@@ -128,26 +118,24 @@ Python 3.11+ (executed with 3.12.10).
 ```bash
 python -m venv .venv
 .venv\Scripts\activate            # macOS/Linux: source .venv/bin/activate
-python -m pip install --upgrade pip
 pip install -e ".[dev]"
+pytest -q                                                                              # 45 passed
 
-pytest -q                                                                  # 35 passed
-python scripts/download_omie.py --start 2023-01-01 --end 2024-12-31 --dataset both   # ~25 min, 2.3 GB
-python scripts/audit_raw_coverage.py --start 2023-01-01 --end 2024-12-31
-python scripts/run_project.py          # ~20 min; exits FAILED at the clearing gate
-python scripts/run_direct_benchmarks.py
-python scripts/audit_clearing_gap.py   # needs data/processed/observed_clearing_table.csv from run_project.py
+python scripts/download_omie.py --start 2023-01-01 --end 2025-09-30 --dataset both    # ~35 min, ~3.3 GB
+python scripts/run_project.py                     # production: exits FAILED at the clearing gate (by design)
+python scripts/run_direct_benchmarks.py           # direct benchmarks, 2024-Q4
+python scripts/audit_clearing_mechanism.py --config configs/extension.yaml           # ~6 min
+python scripts/run_curve_extension.py --config configs/extension.yaml                # ~3.2 h on 10 cores; stages cached
+python scripts/extension_significance.py
 ```
-
-Outputs: `reports/metrics/` (`raw_coverage.json`, `data_quality_report.json`, `curve_price_geography_alignment.json`, `clearing_validation.json`, `clearing_gap_audit.{json,csv}`, `direct_benchmarks/`), `reports/figures/`, `data/processed/observed_clearing_table.csv`.
 
 ## Limitations
 
-- The clearing function is a naive step-curve crossing. It does not model EUPHEMIA complex orders, block orders or market coupling, and on this data it fails the project's own feasibility gate.
-- The curve-based models are implemented and unit-tested but were not evaluated on real data.
-- Benchmarks use calendar and price lags only (no load, wind or solar forecasts), so they are modest baselines rather than state-of-the-art.
-- The evaluation covers one market and one test quarter, with very few negative-price hours.
-- Independent class-volume forecasts would not preserve multivariate curve dependence. This is a design limitation even if the gate passes.
+- The curve approach is not better than direct forecasting on the available holdout. All curve results are conditional on a failed clearing prerequisite.
+- 2025 is a quasi-holdout and includes a structural change in the clearing discrepancy.
+- Independent class-volume models ignore multivariate curve dependence. The inherited curve-model selection score is dominated by near-empty classes.
+- No public pre-auction load, wind or solar forecasts are used. The benchmarks are modest baselines, not state of the art.
+- OMIE's `C01`/`C02`/`C04` offer-typology codes are not decoded from official documentation.
 
 ## Data attribution and references
 

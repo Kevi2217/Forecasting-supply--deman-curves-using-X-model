@@ -1,0 +1,43 @@
+{
+  "n_intervals": 24095,
+  "crossing_error_vs_official": {
+    "offered_supply__offered_demand (gated method)": {
+      "n": 24095,
+      "mae": 24.639403195683748,
+      "bias": -23.20984021581241,
+      "rmse": 34.609774716674934,
+      "median_ae": 17.59,
+      "share_abs_lt_1": 0.11014733347167462
+    },
+    "matched_supply__matched_demand": {
+      "n": 24095,
+      "mae": 0.427165802033617,
+      "bias": -0.38963934426229513,
+      "rmse": 1.1800189502595164,
+      "median_ae": 0.0,
+      "share_abs_lt_1": 0.8676903921975514
+    },
+    "matched_supply__offered_demand": {
+      "n": 24095,
+      "mae": 5.626935463789168,
+      "bias": -5.36838472712181,
+      "rmse": 11.101853216430952,
+      "median_ae": 0.8,
+      "share_abs_lt_1": 0.5210209587051255
+    },
+    "offered_supply__matched_demand": {
+      "n": 24095,
+      "mae": 35.07026520024901,
+      "bias": -33.367586636231586,
+      "rmse": 49.08759770442818,
+      "median_ae": 24.739999999999995,
+      "share_abs_lt_1": 0.13098153143805769
+    }
+  },
+  "mechanical_attribution": {
+    "note": "Counterfactual replacement of one offered curve by its matched counterpart. This is an accounting statement about the curves, not a causal identification of why offers were rejected.",
+    "mae_offered": 24.639403195683748,
+    "mae_after_replacing_supply_with_matched": 5.626935463789168,
+    "mae_after_replacing_both_with_matched": 0.427165802033617
+  }
+}

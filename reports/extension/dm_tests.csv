@@ -1,0 +1,21 @@
+period,model_a,model_b,n_hours,n_days,mae_a_minus_mae_b,dm_stat,p_value,interpretation
+confirmation_2025,adjusted_curve_elastic_net_prediction,curve_elastic_net_prediction,6548,273,-6.379957069583001,-4.6979058845659205,2.6284249068966365e-06,A better
+confirmation_2025,adjusted_curve_hgb_prediction,curve_hgb_prediction,6548,273,-5.500582029944219,-3.4536318517941464,0.0005530918545142782,A better
+confirmation_2025,adjusted_curve_elastic_net_prediction,bias_baseline_curve_elastic_net_prediction,6548,273,-3.9735589401137363,-5.9489509293106915,2.6986652219284347e-09,A better
+confirmation_2025,adjusted_curve_hgb_prediction,bias_baseline_curve_hgb_prediction,6548,273,-4.284662069096356,-7.610534921465143,2.7296379948212382e-14,A better
+confirmation_2025,adjusted_curve_elastic_net_prediction,direct_elastic_net_prediction,6548,273,3.1472185569075557,3.245813030374742,0.0011711572906071008,B better
+confirmation_2025,adjusted_curve_hgb_prediction,direct_hgb_prediction,6548,273,2.643533821027094,4.221382038918274,2.4280901034218684e-05,B better
+confirmation_2025,obs_adjusted_curve_elastic_net_prediction,direct_elastic_net_prediction,6548,273,1.6098721786422356,1.7651787417328955,0.07753373020343735,no significant difference (5%)
+confirmation_2025,obs_adjusted_curve_hgb_prediction,direct_hgb_prediction,6548,273,1.7501194539468372,2.982533546619595,0.002858733172860145,B better
+confirmation_2025,adjusted_curve_hgb_prediction,weekly_persistence_prediction,6548,273,-7.771472703337497,-3.91656858748044,8.981827051157576e-05,A better
+confirmation_2025,direct_hgb_prediction,direct_elastic_net_prediction,6548,273,-1.090119160454944,-3.0990806145810184,0.001941221925502599,A better
+exploratory_2024Q4,adjusted_curve_elastic_net_prediction,curve_elastic_net_prediction,2209,92,-9.288694918776342,-7.498356477747216,6.46229570404087e-14,A better
+exploratory_2024Q4,adjusted_curve_hgb_prediction,curve_hgb_prediction,2209,92,-11.210106883874143,-7.575121926670257,3.58790506082975e-14,A better
+exploratory_2024Q4,adjusted_curve_elastic_net_prediction,bias_baseline_curve_elastic_net_prediction,2209,92,-4.408616180608556,-6.050503909041491,1.4439345923480204e-09,A better
+exploratory_2024Q4,adjusted_curve_hgb_prediction,bias_baseline_curve_hgb_prediction,2209,92,-4.225320580517131,-7.620799062692604,2.521101375023985e-14,A better
+exploratory_2024Q4,adjusted_curve_elastic_net_prediction,direct_elastic_net_prediction,2209,92,1.8107104601790058,1.4925900516581818,0.1355445290427359,no significant difference (5%)
+exploratory_2024Q4,adjusted_curve_hgb_prediction,direct_hgb_prediction,2209,92,0.3161789177032639,0.32536638909382426,0.744903790410185,no significant difference (5%)
+exploratory_2024Q4,obs_adjusted_curve_elastic_net_prediction,direct_elastic_net_prediction,2209,92,-0.8306795124375654,-0.8380064995414159,0.40202705317605386,no significant difference (5%)
+exploratory_2024Q4,obs_adjusted_curve_hgb_prediction,direct_hgb_prediction,2209,92,-0.00828777331342172,-0.01589439347812391,0.9873186427949585,no significant difference (5%)
+exploratory_2024Q4,adjusted_curve_hgb_prediction,weekly_persistence_prediction,2209,92,-13.802859063982993,-4.230330741967323,2.333479661019517e-05,A better
+exploratory_2024Q4,direct_hgb_prediction,direct_elastic_net_prediction,2209,92,0.5431278862251036,1.1319643128247796,0.25764943828664455,no significant difference (5%)

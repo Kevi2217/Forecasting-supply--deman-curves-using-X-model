@@ -1,0 +1,845 @@
+{
+  "elastic_net": {
+    "primary_oof_trained": {
+      "chosen": {
+        "kind": "elastic_net",
+        "params": {
+          "alpha": 1.0,
+          "l1_ratio": 0.5,
+          "max_iter": 20000
+        },
+        "validation_mae": 18.71691510700777,
+        "n": 2208
+      },
+      "best_elastic_net": {
+        "kind": "elastic_net",
+        "params": {
+          "alpha": 1.0,
+          "l1_ratio": 0.5,
+          "max_iter": 20000
+        },
+        "validation_mae": 18.71691510700777,
+        "n": 2208
+      },
+      "best_hist_gradient_boosting": {
+        "kind": "hist_gradient_boosting",
+        "params": {
+          "learning_rate": 0.05,
+          "max_leaf_nodes": 15,
+          "max_iter": 150,
+          "l2_regularization": 0.1
+        },
+        "validation_mae": 18.174733182630238,
+        "n": 2208
+      },
+      "hgb_rule": "HGB only if validation MAE <= (1 - 0.05) x best EN MAE",
+      "no_correction_validation_mae": 23.949166129088685,
+      "n": 2208,
+      "chosen_beats_no_correction_on_validation": true,
+      "candidates": [
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.01,
+            "l1_ratio": 0.1,
+            "max_iter": 20000
+          },
+          "validation_mae": 19.558266735940148,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.01,
+            "l1_ratio": 0.5,
+            "max_iter": 20000
+          },
+          "validation_mae": 19.58969177464077,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.01,
+            "l1_ratio": 0.9,
+            "max_iter": 20000
+          },
+          "validation_mae": 19.626926327314237,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.1,
+            "l1_ratio": 0.1,
+            "max_iter": 20000
+          },
+          "validation_mae": 19.087084808122228,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.1,
+            "l1_ratio": 0.5,
+            "max_iter": 20000
+          },
+          "validation_mae": 19.204425823015413,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.1,
+            "l1_ratio": 0.9,
+            "max_iter": 20000
+          },
+          "validation_mae": 19.380940458940433,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 1.0,
+            "l1_ratio": 0.1,
+            "max_iter": 20000
+          },
+          "validation_mae": 18.734014643755156,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 1.0,
+            "l1_ratio": 0.5,
+            "max_iter": 20000
+          },
+          "validation_mae": 18.71691510700777,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 1.0,
+            "l1_ratio": 0.9,
+            "max_iter": 20000
+          },
+          "validation_mae": 18.94455744479837,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 10.0,
+            "l1_ratio": 0.1,
+            "max_iter": 20000
+          },
+          "validation_mae": 20.784840948287346,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 10.0,
+            "l1_ratio": 0.5,
+            "max_iter": 20000
+          },
+          "validation_mae": 21.204309125453843,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 10.0,
+            "l1_ratio": 0.9,
+            "max_iter": 20000
+          },
+          "validation_mae": 21.83226640109321,
+          "n": 2208
+        },
+        {
+          "kind": "hist_gradient_boosting",
+          "params": {
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 15,
+            "max_iter": 150,
+            "l2_regularization": 0.1
+          },
+          "validation_mae": 18.174733182630238,
+          "n": 2208
+        },
+        {
+          "kind": "hist_gradient_boosting",
+          "params": {
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 31,
+            "max_iter": 150,
+            "l2_regularization": 0.1
+          },
+          "validation_mae": 18.433538226505313,
+          "n": 2208
+        },
+        {
+          "kind": "hist_gradient_boosting",
+          "params": {
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 15,
+            "max_iter": 150,
+            "l2_regularization": 0.1
+          },
+          "validation_mae": 18.442631388719747,
+          "n": 2208
+        },
+        {
+          "kind": "hist_gradient_boosting",
+          "params": {
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 31,
+            "max_iter": 150,
+            "l2_regularization": 0.1
+          },
+          "validation_mae": 18.611905777440395,
+          "n": 2208
+        }
+      ]
+    },
+    "sensitivity_observed_trained": {
+      "chosen": {
+        "kind": "hist_gradient_boosting",
+        "params": {
+          "learning_rate": 0.05,
+          "max_leaf_nodes": 31,
+          "max_iter": 150,
+          "l2_regularization": 0.1
+        },
+        "validation_mae": 18.4552252887855,
+        "n": 2208
+      },
+      "best_elastic_net": {
+        "kind": "elastic_net",
+        "params": {
+          "alpha": 0.01,
+          "l1_ratio": 0.5,
+          "max_iter": 20000
+        },
+        "validation_mae": 19.443208749402718,
+        "n": 2208
+      },
+      "best_hist_gradient_boosting": {
+        "kind": "hist_gradient_boosting",
+        "params": {
+          "learning_rate": 0.05,
+          "max_leaf_nodes": 31,
+          "max_iter": 150,
+          "l2_regularization": 0.1
+        },
+        "validation_mae": 18.4552252887855,
+        "n": 2208
+      },
+      "hgb_rule": "HGB only if validation MAE <= (1 - 0.05) x best EN MAE",
+      "no_correction_validation_mae": 23.949166129088685,
+      "n": 2208,
+      "chosen_beats_no_correction_on_validation": true,
+      "candidates": [
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.01,
+            "l1_ratio": 0.1,
+            "max_iter": 20000
+          },
+          "validation_mae": 19.443342197897625,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.01,
+            "l1_ratio": 0.5,
+            "max_iter": 20000
+          },
+          "validation_mae": 19.443208749402718,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.01,
+            "l1_ratio": 0.9,
+            "max_iter": 20000
+          },
+          "validation_mae": 19.443329367727323,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.1,
+            "l1_ratio": 0.1,
+            "max_iter": 20000
+          },
+          "validation_mae": 19.503130198067115,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.1,
+            "l1_ratio": 0.5,
+            "max_iter": 20000
+          },
+          "validation_mae": 19.470491831641446,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.1,
+            "l1_ratio": 0.9,
+            "max_iter": 20000
+          },
+          "validation_mae": 19.45810603093765,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 1.0,
+            "l1_ratio": 0.1,
+            "max_iter": 20000
+          },
+          "validation_mae": 20.001380570069408,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 1.0,
+            "l1_ratio": 0.5,
+            "max_iter": 20000
+          },
+          "validation_mae": 19.850505792749445,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 1.0,
+            "l1_ratio": 0.9,
+            "max_iter": 20000
+          },
+          "validation_mae": 19.61804080702267,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 10.0,
+            "l1_ratio": 0.1,
+            "max_iter": 20000
+          },
+          "validation_mae": 22.15618301393071,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 10.0,
+            "l1_ratio": 0.5,
+            "max_iter": 20000
+          },
+          "validation_mae": 22.34106108105952,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 10.0,
+            "l1_ratio": 0.9,
+            "max_iter": 20000
+          },
+          "validation_mae": 22.16295177968066,
+          "n": 2208
+        },
+        {
+          "kind": "hist_gradient_boosting",
+          "params": {
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 15,
+            "max_iter": 150,
+            "l2_regularization": 0.1
+          },
+          "validation_mae": 18.53089460731198,
+          "n": 2208
+        },
+        {
+          "kind": "hist_gradient_boosting",
+          "params": {
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 31,
+            "max_iter": 150,
+            "l2_regularization": 0.1
+          },
+          "validation_mae": 18.4552252887855,
+          "n": 2208
+        },
+        {
+          "kind": "hist_gradient_boosting",
+          "params": {
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 15,
+            "max_iter": 150,
+            "l2_regularization": 0.1
+          },
+          "validation_mae": 18.53100460842745,
+          "n": 2208
+        },
+        {
+          "kind": "hist_gradient_boosting",
+          "params": {
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 31,
+            "max_iter": 150,
+            "l2_regularization": 0.1
+          },
+          "validation_mae": 18.468268136056775,
+          "n": 2208
+        }
+      ]
+    },
+    "bias_baseline": {
+      "constant": 13.86329214045789,
+      "estimated_on": [
+        "2023-07-01",
+        "2024-06-30"
+      ],
+      "validation_mae": 22.65605580929071
+    },
+    "reference_trailing_28d_same_hour_median_oof_residual": {
+      "validation_mae": 20.527121964315416
+    },
+    "oof_training_rows": 8781,
+    "validation_rows": 2208
+  },
+  "hgb": {
+    "primary_oof_trained": {
+      "chosen": {
+        "kind": "elastic_net",
+        "params": {
+          "alpha": 1.0,
+          "l1_ratio": 0.1,
+          "max_iter": 20000
+        },
+        "validation_mae": 17.605662190297462,
+        "n": 2208
+      },
+      "best_elastic_net": {
+        "kind": "elastic_net",
+        "params": {
+          "alpha": 1.0,
+          "l1_ratio": 0.1,
+          "max_iter": 20000
+        },
+        "validation_mae": 17.605662190297462,
+        "n": 2208
+      },
+      "best_hist_gradient_boosting": {
+        "kind": "hist_gradient_boosting",
+        "params": {
+          "learning_rate": 0.05,
+          "max_leaf_nodes": 31,
+          "max_iter": 150,
+          "l2_regularization": 0.1
+        },
+        "validation_mae": 17.482330553221267,
+        "n": 2208
+      },
+      "hgb_rule": "HGB only if validation MAE <= (1 - 0.05) x best EN MAE",
+      "no_correction_validation_mae": 24.412153069836716,
+      "n": 2208,
+      "chosen_beats_no_correction_on_validation": true,
+      "candidates": [
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.01,
+            "l1_ratio": 0.1,
+            "max_iter": 20000
+          },
+          "validation_mae": 18.100577879325456,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.01,
+            "l1_ratio": 0.5,
+            "max_iter": 20000
+          },
+          "validation_mae": 18.11274725512089,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.01,
+            "l1_ratio": 0.9,
+            "max_iter": 20000
+          },
+          "validation_mae": 18.124743469348648,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.1,
+            "l1_ratio": 0.1,
+            "max_iter": 20000
+          },
+          "validation_mae": 17.863901960686754,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.1,
+            "l1_ratio": 0.5,
+            "max_iter": 20000
+          },
+          "validation_mae": 17.914990288632072,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.1,
+            "l1_ratio": 0.9,
+            "max_iter": 20000
+          },
+          "validation_mae": 17.984463068248555,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 1.0,
+            "l1_ratio": 0.1,
+            "max_iter": 20000
+          },
+          "validation_mae": 17.605662190297462,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 1.0,
+            "l1_ratio": 0.5,
+            "max_iter": 20000
+          },
+          "validation_mae": 17.61637736246745,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 1.0,
+            "l1_ratio": 0.9,
+            "max_iter": 20000
+          },
+          "validation_mae": 17.684959516814846,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 10.0,
+            "l1_ratio": 0.1,
+            "max_iter": 20000
+          },
+          "validation_mae": 19.087297877284822,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 10.0,
+            "l1_ratio": 0.5,
+            "max_iter": 20000
+          },
+          "validation_mae": 19.465212868732873,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 10.0,
+            "l1_ratio": 0.9,
+            "max_iter": 20000
+          },
+          "validation_mae": 19.947479978800217,
+          "n": 2208
+        },
+        {
+          "kind": "hist_gradient_boosting",
+          "params": {
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 15,
+            "max_iter": 150,
+            "l2_regularization": 0.1
+          },
+          "validation_mae": 17.629898573319064,
+          "n": 2208
+        },
+        {
+          "kind": "hist_gradient_boosting",
+          "params": {
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 31,
+            "max_iter": 150,
+            "l2_regularization": 0.1
+          },
+          "validation_mae": 17.482330553221267,
+          "n": 2208
+        },
+        {
+          "kind": "hist_gradient_boosting",
+          "params": {
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 15,
+            "max_iter": 150,
+            "l2_regularization": 0.1
+          },
+          "validation_mae": 17.68576950995837,
+          "n": 2208
+        },
+        {
+          "kind": "hist_gradient_boosting",
+          "params": {
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 31,
+            "max_iter": 150,
+            "l2_regularization": 0.1
+          },
+          "validation_mae": 17.844435690372933,
+          "n": 2208
+        }
+      ]
+    },
+    "sensitivity_observed_trained": {
+      "chosen": {
+        "kind": "elastic_net",
+        "params": {
+          "alpha": 1.0,
+          "l1_ratio": 0.5,
+          "max_iter": 20000
+        },
+        "validation_mae": 17.602571895999773,
+        "n": 2208
+      },
+      "best_elastic_net": {
+        "kind": "elastic_net",
+        "params": {
+          "alpha": 1.0,
+          "l1_ratio": 0.5,
+          "max_iter": 20000
+        },
+        "validation_mae": 17.602571895999773,
+        "n": 2208
+      },
+      "best_hist_gradient_boosting": {
+        "kind": "hist_gradient_boosting",
+        "params": {
+          "learning_rate": 0.05,
+          "max_leaf_nodes": 15,
+          "max_iter": 150,
+          "l2_regularization": 0.1
+        },
+        "validation_mae": 16.99045201747294,
+        "n": 2208
+      },
+      "hgb_rule": "HGB only if validation MAE <= (1 - 0.05) x best EN MAE",
+      "no_correction_validation_mae": 24.412153069836716,
+      "n": 2208,
+      "chosen_beats_no_correction_on_validation": true,
+      "candidates": [
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.01,
+            "l1_ratio": 0.1,
+            "max_iter": 20000
+          },
+          "validation_mae": 17.624642736084382,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.01,
+            "l1_ratio": 0.5,
+            "max_iter": 20000
+          },
+          "validation_mae": 17.627095764299064,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.01,
+            "l1_ratio": 0.9,
+            "max_iter": 20000
+          },
+          "validation_mae": 17.630693611775452,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.1,
+            "l1_ratio": 0.1,
+            "max_iter": 20000
+          },
+          "validation_mae": 17.627037216746047,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.1,
+            "l1_ratio": 0.5,
+            "max_iter": 20000
+          },
+          "validation_mae": 17.61124783536359,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 0.1,
+            "l1_ratio": 0.9,
+            "max_iter": 20000
+          },
+          "validation_mae": 17.62337189436325,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 1.0,
+            "l1_ratio": 0.1,
+            "max_iter": 20000
+          },
+          "validation_mae": 17.625852507933597,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 1.0,
+            "l1_ratio": 0.5,
+            "max_iter": 20000
+          },
+          "validation_mae": 17.602571895999773,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 1.0,
+            "l1_ratio": 0.9,
+            "max_iter": 20000
+          },
+          "validation_mae": 17.60574688469045,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 10.0,
+            "l1_ratio": 0.1,
+            "max_iter": 20000
+          },
+          "validation_mae": 19.069927161867902,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 10.0,
+            "l1_ratio": 0.5,
+            "max_iter": 20000
+          },
+          "validation_mae": 19.24087318213829,
+          "n": 2208
+        },
+        {
+          "kind": "elastic_net",
+          "params": {
+            "alpha": 10.0,
+            "l1_ratio": 0.9,
+            "max_iter": 20000
+          },
+          "validation_mae": 19.104909622610446,
+          "n": 2208
+        },
+        {
+          "kind": "hist_gradient_boosting",
+          "params": {
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 15,
+            "max_iter": 150,
+            "l2_regularization": 0.1
+          },
+          "validation_mae": 16.99045201747294,
+          "n": 2208
+        },
+        {
+          "kind": "hist_gradient_boosting",
+          "params": {
+            "learning_rate": 0.05,
+            "max_leaf_nodes": 31,
+            "max_iter": 150,
+            "l2_regularization": 0.1
+          },
+          "validation_mae": 17.03202825688852,
+          "n": 2208
+        },
+        {
+          "kind": "hist_gradient_boosting",
+          "params": {
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 15,
+            "max_iter": 150,
+            "l2_regularization": 0.1
+          },
+          "validation_mae": 17.098437362441633,
+          "n": 2208
+        },
+        {
+          "kind": "hist_gradient_boosting",
+          "params": {
+            "learning_rate": 0.1,
+            "max_leaf_nodes": 31,
+            "max_iter": 150,
+            "l2_regularization": 0.1
+          },
+          "validation_mae": 17.028810401658276,
+          "n": 2208
+        }
+      ]
+    },
+    "bias_baseline": {
+      "constant": 19.123811467565616,
+      "estimated_on": [
+        "2023-07-01",
+        "2024-06-30"
+      ],
+      "validation_mae": 20.79870944593628
+    },
+    "reference_trailing_28d_same_hour_median_oof_residual": {
+      "validation_mae": 19.09463946861859
+    },
+    "oof_training_rows": 8781,
+    "validation_rows": 2208
+  }
+}

@@ -1,0 +1,133 @@
+period,month,model,n,mae,bias
+confirmation_2025,2025-01,Weekly Persistence,744,50.40263440860215,19.995725806451613
+confirmation_2025,2025-01,Direct Elastic Net,744,25.444767367373863,1.1067025915764304
+confirmation_2025,2025-01,Direct Gradient Boosting,744,25.05337186450083,4.954231321930793
+confirmation_2025,2025-01,Unadjusted Curve-Based Elastic Net (exploratory),744,36.70857456047321,-17.950584470667362
+confirmation_2025,2025-01,Unadjusted Curve-Based Gradient Boosting (exploratory),744,36.58703729277594,-23.497126994491786
+confirmation_2025,2025-01,Adjusted Curve-Based Elastic Net,744,26.617908668110882,-0.38546809536178345
+confirmation_2025,2025-01,Adjusted Curve-Based Gradient Boosting,744,24.80513213964889,1.5840094242545866
+confirmation_2025,2025-01,Curve-Based EN + constant training bias (baseline),744,33.622956363827534,-4.087292330209471
+confirmation_2025,2025-01,Curve-Based GB + constant training bias (baseline),744,31.18411114949656,-4.373315526926172
+confirmation_2025,2025-01,Curve-Based EN + observed-curve-trained g (sensitivity),744,26.58077726239812,8.052986726842578
+confirmation_2025,2025-01,Curve-Based GB + observed-curve-trained g (sensitivity),744,24.171373022628856,3.343554883617511
+confirmation_2025,2025-02,Weekly Persistence,672,42.94322916666667,-12.58358630952381
+confirmation_2025,2025-02,Direct Elastic Net,672,24.177850992826894,-7.847519892912031
+confirmation_2025,2025-02,Direct Gradient Boosting,672,22.644281548235302,-6.686391221493135
+confirmation_2025,2025-02,Unadjusted Curve-Based Elastic Net (exploratory),672,59.576590982503184,-57.22570655576223
+confirmation_2025,2025-02,Unadjusted Curve-Based Gradient Boosting (exploratory),672,56.08984146775304,-53.61372789358971
+confirmation_2025,2025-02,Adjusted Curve-Based Elastic Net,672,36.51067433481857,-29.10974128902037
+confirmation_2025,2025-02,Adjusted Curve-Based Gradient Boosting,672,31.38821436720975,-21.797047109197052
+confirmation_2025,2025-02,Curve-Based EN + constant training bias (baseline),672,48.304976900498986,-43.36241441530434
+confirmation_2025,2025-02,Curve-Based GB + constant training bias (baseline),672,41.69894851414311,-34.4899164260241
+confirmation_2025,2025-02,Curve-Based EN + observed-curve-trained g (sensitivity),672,28.02939019346498,-16.55126116392828
+confirmation_2025,2025-02,Curve-Based GB + observed-curve-trained g (sensitivity),672,28.69393736780656,-17.840240943903403
+confirmation_2025,2025-03,Weekly Persistence,742,31.36455525606469,14.547304582210243
+confirmation_2025,2025-03,Direct Elastic Net,742,21.853530169979468,6.312807623636243
+confirmation_2025,2025-03,Direct Gradient Boosting,742,20.413130282876896,3.426834111772423
+confirmation_2025,2025-03,Unadjusted Curve-Based Elastic Net (exploratory),742,29.649964216697565,-19.648195167603276
+confirmation_2025,2025-03,Unadjusted Curve-Based Gradient Boosting (exploratory),742,27.382622365053475,-20.78419140314562
+confirmation_2025,2025-03,Adjusted Curve-Based Elastic Net,742,23.623294079499235,4.565724417077812
+confirmation_2025,2025-03,Adjusted Curve-Based Gradient Boosting,742,23.077948534293437,6.22140008065925
+confirmation_2025,2025-03,Curve-Based EN + constant training bias (baseline),742,27.55256102055122,-5.784903027145386
+confirmation_2025,2025-03,Curve-Based GB + constant training bias (baseline),742,25.78824534650307,-1.660379935580006
+confirmation_2025,2025-03,Curve-Based EN + observed-curve-trained g (sensitivity),742,22.85909746587805,11.58900952019272
+confirmation_2025,2025-03,Curve-Based GB + observed-curve-trained g (sensitivity),742,22.615497113940407,6.838987314050146
+confirmation_2025,2025-04,Weekly Persistence,718,22.84867688022284,1.25616991643454
+confirmation_2025,2025-04,Direct Elastic Net,718,18.092086022629584,5.259053606062729
+confirmation_2025,2025-04,Direct Gradient Boosting,718,16.48131270124504,3.9033799261095563
+confirmation_2025,2025-04,Unadjusted Curve-Based Elastic Net (exploratory),718,22.469829814343786,-21.7917475854587
+confirmation_2025,2025-04,Unadjusted Curve-Based Gradient Boosting (exploratory),718,18.74412316006947,-15.753163322485737
+confirmation_2025,2025-04,Adjusted Curve-Based Elastic Net,718,17.412803707700224,-5.240928112861836
+confirmation_2025,2025-04,Adjusted Curve-Based Gradient Boosting,718,18.110987625849027,0.3042977818161144
+confirmation_2025,2025-04,Curve-Based EN + constant training bias (baseline),718,20.29044924079976,-7.9284554450008144
+confirmation_2025,2025-04,Curve-Based GB + constant training bias (baseline),718,20.889841152700864,3.370648145079878
+confirmation_2025,2025-04,Curve-Based EN + observed-curve-trained g (sensitivity),718,16.708178267904103,-13.403449462524858
+confirmation_2025,2025-04,Curve-Based GB + observed-curve-trained g (sensitivity),718,16.564863061571376,-1.4288404030479362
+confirmation_2025,2025-05,Weekly Persistence,744,14.644274193548387,-1.1500000000000008
+confirmation_2025,2025-05,Direct Elastic Net,744,12.19170454547209,4.738449109991021
+confirmation_2025,2025-05,Direct Gradient Boosting,744,10.349215564074068,4.3730789849872576
+confirmation_2025,2025-05,Unadjusted Curve-Based Elastic Net (exploratory),744,15.095977093693985,-11.892862502326514
+confirmation_2025,2025-05,Unadjusted Curve-Based Gradient Boosting (exploratory),744,13.4285059386451,-9.228217698337104
+confirmation_2025,2025-05,Adjusted Curve-Based Elastic Net,744,14.291994223336495,3.1750862600807626
+confirmation_2025,2025-05,Adjusted Curve-Based Gradient Boosting,744,15.04250149658222,4.457582612996487
+confirmation_2025,2025-05,Curve-Based EN + constant training bias (baseline),744,16.566763520957196,1.9704296381313755
+confirmation_2025,2025-05,Curve-Based GB + constant training bias (baseline),744,18.78044004785486,9.89559376922851
+confirmation_2025,2025-05,Curve-Based EN + observed-curve-trained g (sensitivity),744,10.844707096355338,-4.256497713942562
+confirmation_2025,2025-05,Curve-Based GB + observed-curve-trained g (sensitivity),744,13.450607421128014,2.5803874533496627
+confirmation_2025,2025-06,Weekly Persistence,720,24.424305555555556,-13.909555555555556
+confirmation_2025,2025-06,Direct Elastic Net,720,19.143526444333883,-4.251986260352087
+confirmation_2025,2025-06,Direct Gradient Boosting,720,16.65306027795449,-0.8922386446411649
+confirmation_2025,2025-06,Unadjusted Curve-Based Elastic Net (exploratory),720,35.84249753705996,-34.10985518674671
+confirmation_2025,2025-06,Unadjusted Curve-Based Gradient Boosting (exploratory),720,28.147184706342912,-23.666433054663145
+confirmation_2025,2025-06,Adjusted Curve-Based Elastic Net,720,29.540024403303217,-23.466081039954588
+confirmation_2025,2025-06,Adjusted Curve-Based Gradient Boosting,720,21.984643716464007,-12.059001077558198
+confirmation_2025,2025-06,Curve-Based EN + constant training bias (baseline),720,29.900180230396128,-20.246563046288816
+confirmation_2025,2025-06,Curve-Based GB + constant training bias (baseline),720,23.85346560550896,-4.5426215870975275
+confirmation_2025,2025-06,Curve-Based EN + observed-curve-trained g (sensitivity),720,29.541706678970815,-27.149730657923232
+confirmation_2025,2025-06,Curve-Based GB + observed-curve-trained g (sensitivity),720,22.056491635160636,-14.0260395089641
+confirmation_2025,2025-07,Weekly Persistence,744,24.287379032258062,10.675389784946237
+confirmation_2025,2025-07,Direct Elastic Net,744,16.838302334261414,4.074671849947436
+confirmation_2025,2025-07,Direct Gradient Boosting,744,16.296487527589946,7.311319714530846
+confirmation_2025,2025-07,Unadjusted Curve-Based Elastic Net (exploratory),744,21.123155140066334,-11.706436720539294
+confirmation_2025,2025-07,Unadjusted Curve-Based Gradient Boosting (exploratory),744,18.69938604960738,-9.527085073786623
+confirmation_2025,2025-07,Adjusted Curve-Based Elastic Net,744,18.77862494193066,-0.14248694007516963
+confirmation_2025,2025-07,Adjusted Curve-Based Gradient Boosting,744,17.451484483004993,4.723010472293596
+confirmation_2025,2025-07,Curve-Based EN + constant training bias (baseline),744,21.006701499893484,2.1568554199185943
+confirmation_2025,2025-07,Curve-Based GB + constant training bias (baseline),744,20.466737238437926,9.596726393778992
+confirmation_2025,2025-07,Curve-Based EN + observed-curve-trained g (sensitivity),744,18.80836921909339,-3.884694415700431
+confirmation_2025,2025-07,Curve-Based GB + observed-curve-trained g (sensitivity),744,16.846970060546077,0.9521591392275781
+confirmation_2025,2025-08,Weekly Persistence,744,19.67486559139785,-5.604731182795699
+confirmation_2025,2025-08,Direct Elastic Net,744,14.763690486256378,-0.16861284626169876
+confirmation_2025,2025-08,Direct Gradient Boosting,744,13.700320762358476,1.5036028529732361
+confirmation_2025,2025-08,Unadjusted Curve-Based Elastic Net (exploratory),744,18.168752018543422,-11.535907808589933
+confirmation_2025,2025-08,Unadjusted Curve-Based Gradient Boosting (exploratory),744,18.006772670430806,-12.805850813218917
+confirmation_2025,2025-08,Adjusted Curve-Based Elastic Net,744,15.110584226711998,-1.3106938522379987
+confirmation_2025,2025-08,Adjusted Curve-Based Gradient Boosting,744,15.28819707755603,-0.045660400060446825
+confirmation_2025,2025-08,Curve-Based EN + constant training bias (baseline),744,18.647079453992315,2.327384331867955
+confirmation_2025,2025-08,Curve-Based GB + constant training bias (baseline),744,19.207446724520068,6.317960654346698
+confirmation_2025,2025-08,Curve-Based EN + observed-curve-trained g (sensitivity),744,14.609828956258287,-5.5860815433718205
+confirmation_2025,2025-08,Curve-Based GB + observed-curve-trained g (sensitivity),744,15.160490333151547,-3.7265507036682246
+confirmation_2025,2025-09,Weekly Persistence,720,24.001583333333333,-0.7440555555555556
+confirmation_2025,2025-09,Direct Elastic Net,720,17.633441280589082,1.446087629830773
+confirmation_2025,2025-09,Direct Gradient Boosting,720,18.698959824929666,2.32981132431711
+confirmation_2025,2025-09,Unadjusted Curve-Based Elastic Net (exploratory),720,19.553179950361113,-9.233584085334892
+confirmation_2025,2025-09,Unadjusted Curve-Based Gradient Boosting (exploratory),720,18.583165194498147,-7.113972881078083
+confirmation_2025,2025-09,Adjusted Curve-Based Elastic Net,720,17.456065675763522,0.002817145565637702
+confirmation_2025,2025-09,Adjusted Curve-Based Gradient Boosting,720,17.448935796817175,3.9939639657762975
+confirmation_2025,2025-09,Curve-Based EN + constant training bias (baseline),720,19.76035679511169,4.629708055122998
+confirmation_2025,2025-09,Curve-Based GB + constant training bias (baseline),720,21.739336632644033,12.009838586487533
+confirmation_2025,2025-09,Curve-Based EN + observed-curve-trained g (sensitivity),720,16.9664297591537,-4.059668947861228
+confirmation_2025,2025-09,Curve-Based GB + observed-curve-trained g (sensitivity),720,16.841520909173205,0.09822113488233523
+exploratory_2024Q4,2024-10,Weekly Persistence,745,30.92991946308725,-4.707503355704699
+exploratory_2024Q4,2024-10,Direct Elastic Net,745,21.973548802643442,-0.2003255055129258
+exploratory_2024Q4,2024-10,Direct Gradient Boosting,745,22.722811452605512,0.22678246353214546
+exploratory_2024Q4,2024-10,Unadjusted Curve-Based Elastic Net (exploratory),745,34.17403343749821,-24.704710399321975
+exploratory_2024Q4,2024-10,Unadjusted Curve-Based Gradient Boosting (exploratory),745,33.88746509345398,-24.44144643027423
+exploratory_2024Q4,2024-10,Adjusted Curve-Based Elastic Net,745,24.349180597571234,-8.097460500660986
+exploratory_2024Q4,2024-10,Adjusted Curve-Based Gradient Boosting,745,24.11078454910478,-4.357354327645199
+exploratory_2024Q4,2024-10,Curve-Based EN + constant training bias (baseline),745,30.157844925504087,-10.841418258864087
+exploratory_2024Q4,2024-10,Curve-Based GB + constant training bias (baseline),745,29.27632031156204,-5.3176349627086115
+exploratory_2024Q4,2024-10,Curve-Based EN + observed-curve-trained g (sensitivity),745,22.89053662963678,-2.18853016536047
+exploratory_2024Q4,2024-10,Curve-Based GB + observed-curve-trained g (sensitivity),745,23.703053214982567,-3.2984453768830555
+exploratory_2024Q4,2024-11,Weekly Persistence,720,32.87190277777778,-7.681236111111113
+exploratory_2024Q4,2024-11,Direct Elastic Net,720,22.850377416066944,-5.000518774074056
+exploratory_2024Q4,2024-11,Direct Gradient Boosting,720,23.784803033489233,-4.646021904373069
+exploratory_2024Q4,2024-11,Unadjusted Curve-Based Elastic Net (exploratory),720,37.90775649578667,-30.99815860114393
+exploratory_2024Q4,2024-11,Unadjusted Curve-Based Gradient Boosting (exploratory),720,38.32517113436944,-31.25620146472712
+exploratory_2024Q4,2024-11,Adjusted Curve-Based Elastic Net,720,26.750365981260423,-16.46669559213408
+exploratory_2024Q4,2024-11,Adjusted Curve-Based Gradient Boosting,720,25.036328515562136,-10.768243749427777
+exploratory_2024Q4,2024-11,Curve-Based EN + constant training bias (baseline),720,31.087395686940454,-17.134866460686048
+exploratory_2024Q4,2024-11,Curve-Based GB + constant training bias (baseline),720,28.819879254146375,-12.132389997161509
+exploratory_2024Q4,2024-11,Curve-Based EN + observed-curve-trained g (sensitivity),720,23.284494133801186,-9.437862077974835
+exploratory_2024Q4,2024-11,Curve-Based GB + observed-curve-trained g (sensitivity),720,24.587719165317004,-9.162508861594933
+exploratory_2024Q4,2024-12,Weekly Persistence,744,47.938844086021504,-5.131451612903226
+exploratory_2024Q4,2024-12,Direct Elastic Net,744,23.07227150570731,-3.3045120691122287
+exploratory_2024Q4,2024-12,Direct Gradient Boosting,744,23.03031234160175,-7.790987361497618
+exploratory_2024Q4,2024-12,Unadjusted Curve-Based Elastic Net (exploratory),744,29.238820553754824,-16.692169045758398
+exploratory_2024Q4,2024-12,Unadjusted Curve-Based Gradient Boosting (exploratory),744,32.00186253060528,-20.949105460704942
+exploratory_2024Q4,2024-12,Adjusted Curve-Based Elastic Net,744,22.29541929115746,-8.15298697820901
+exploratory_2024Q4,2024-12,Adjusted Curve-Based Gradient Boosting,744,21.368082402384097,-2.9869615877700144
+exploratory_2024Q4,2024-12,Curve-Based EN + constant training bias (baseline),744,25.37138277309926,-2.828876905300507
+exploratory_2024Q4,2024-12,Curve-Based GB + constant training bias (baseline),744,25.07944327274839,-1.8252939931393255
+exploratory_2024Q4,2024-12,Curve-Based EN + observed-curve-trained g (sensitivity),744,19.267579286818503,-1.3602884130839785
+exploratory_2024Q4,2024-12,Curve-Based GB + observed-curve-trained g (sensitivity),744,21.247130326633673,-3.2129966978700075

@@ -193,3 +193,34 @@ def plot_reconstruction_diagnostics(
     ax.legend()
     fig.tight_layout()
     return _save(fig, output_path)
+
+
+def plot_clearing_mechanism(audit: pd.DataFrame, *, output_path: Path | None = None):
+    """Ex-post mechanism audit: monthly crossing error by curve combination, and error vs unmatched cheap supply."""
+    t = audit.copy()
+    p = t["price_es_eur_mwh"].astype(float)
+    t["month"] = pd.to_datetime(t["delivery_date"]).dt.to_period("M").dt.to_timestamp()
+    combos = {
+        "offered x offered (gated)": "p_offered",
+        "matched supply x offered demand": "p_matched_supply_offered_demand",
+        "matched x matched": "p_matched",
+    }
+    fig, axes = plt.subplots(1, 2, figsize=(13, 4.5))
+    for label, col in combos.items():
+        monthly = (t[col] - p).abs().groupby(t["month"]).mean()
+        axes[0].plot(monthly.index, monthly.values, marker="o", ms=3, label=label)
+    if "has_offer_type" in t.columns and t["has_offer_type"].astype(bool).any():
+        first = pd.to_datetime(t.loc[t["has_offer_type"].astype(bool), "delivery_date"]).min()
+        axes[0].axvline(first, color="k", ls="--", lw=0.8)
+        axes[0].text(first, axes[0].get_ylim()[1] * 0.92, " offer typology\n published", fontsize=7, va="top")
+    axes[0].set_ylabel("MAE vs official price (EUR/MWh)")
+    axes[0].set_title("Monthly crossing error by curve combination")
+    axes[0].legend(fontsize=8)
+    err = t["p_offered"] - p
+    axes[1].hexbin(t["supply_unmatched_at_or_below_p_mwh"] / 1000, err, gridsize=60, bins="log", cmap="viridis")
+    axes[1].axhline(0, color="w", lw=0.6)
+    axes[1].set_xlabel("Offered supply <= p* not matched (GWh, ex post)")
+    axes[1].set_ylabel("Offered-curve clearing error (EUR/MWh)")
+    axes[1].set_title(f"Association (Pearson r = {err.corr(t['supply_unmatched_at_or_below_p_mwh']):.2f}); not causal")
+    fig.tight_layout()
+    return _save(fig, output_path)

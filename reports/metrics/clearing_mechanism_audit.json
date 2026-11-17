@@ -1,0 +1,636 @@
+{
+  "n_intervals": 24095,
+  "period": [
+    "2023-01-01",
+    "2025-09-30"
+  ],
+  "crossing_error_vs_official": {
+    "offered_supply__offered_demand (gated method)": {
+      "n": 24095,
+      "mae": 24.639403195683748,
+      "bias": -23.20984021581241,
+      "rmse": 34.609774716674934,
+      "median_ae": 17.59,
+      "share_abs_lt_1": 0.11014733347167462
+    },
+    "matched_supply__matched_demand": {
+      "n": 24095,
+      "mae": 0.427165802033617,
+      "bias": -0.38963934426229513,
+      "rmse": 1.1800189502595164,
+      "median_ae": 0.0,
+      "share_abs_lt_1": 0.8676903921975514
+    },
+    "matched_supply__offered_demand": {
+      "n": 24095,
+      "mae": 5.626935463789168,
+      "bias": -5.36838472712181,
+      "rmse": 11.101853216430952,
+      "median_ae": 0.8,
+      "share_abs_lt_1": 0.5210209587051255
+    },
+    "offered_supply__matched_demand": {
+      "n": 24095,
+      "mae": 35.07026520024901,
+      "bias": -33.367586636231586,
+      "rmse": 49.08759770442818,
+      "median_ae": 24.739999999999995,
+      "share_abs_lt_1": 0.13098153143805769
+    }
+  },
+  "crossing_error_by_year": {
+    "2023": {
+      "offered_supply__offered_demand (gated method)": {
+        "n": 8760,
+        "mae": 32.26837442922374,
+        "bias": -30.908739726027402,
+        "rmse": 41.74399472327272,
+        "median_ae": 27.805,
+        "share_abs_lt_1": 0.045319634703196346
+      },
+      "matched_supply__matched_demand": {
+        "n": 8760,
+        "mae": 0.44511757990867595,
+        "bias": -0.4212340182648403,
+        "rmse": 1.165187214267406,
+        "median_ae": 0.0,
+        "share_abs_lt_1": 0.8621004566210045
+      },
+      "matched_supply__offered_demand": {
+        "n": 8760,
+        "mae": 7.492361872146119,
+        "bias": -7.256989726027397,
+        "rmse": 13.260640522471382,
+        "median_ae": 2.0749999999999993,
+        "share_abs_lt_1": 0.441324200913242
+      },
+      "offered_supply__matched_demand": {
+        "n": 8760,
+        "mae": 46.16921689497717,
+        "bias": -44.74823287671233,
+        "rmse": 58.5166949941342,
+        "median_ae": 40.45,
+        "share_abs_lt_1": 0.04817351598173516
+      }
+    },
+    "2024": {
+      "offered_supply__offered_demand (gated method)": {
+        "n": 8784,
+        "mae": 20.022194899817855,
+        "bias": -18.447499999999998,
+        "rmse": 28.303428868270977,
+        "median_ae": 14.23,
+        "share_abs_lt_1": 0.15027322404371585
+      },
+      "matched_supply__matched_demand": {
+        "n": 8784,
+        "mae": 0.34723019125683063,
+        "bias": -0.32698201275045535,
+        "rmse": 0.9437856556672981,
+        "median_ae": 0.0,
+        "share_abs_lt_1": 0.8870673952641166
+      },
+      "matched_supply__offered_demand": {
+        "n": 8784,
+        "mae": 3.6002345173041896,
+        "bias": -3.3472518214936247,
+        "rmse": 8.468047755349827,
+        "median_ae": 0.259999999999998,
+        "share_abs_lt_1": 0.6267076502732241
+      },
+      "offered_supply__matched_demand": {
+        "n": 8784,
+        "mae": 29.992876821493624,
+        "bias": -28.100340391621128,
+        "rmse": 43.08622087582294,
+        "median_ae": 20.004999999999995,
+        "share_abs_lt_1": 0.16780510018214936
+      }
+    },
+    "2025": {
+      "offered_supply__offered_demand (gated method)": {
+        "n": 6551,
+        "mae": 20.6289879407724,
+        "bias": -19.300519004732102,
+        "rmse": 31.64524585693321,
+        "median_ae": 10.550000000000011,
+        "share_abs_lt_1": 0.14303159822927797
+      },
+      "matched_supply__matched_demand": {
+        "n": 6551,
+        "mae": 0.510343459013891,
+        "bias": -0.4314058922301938,
+        "rmse": 1.4531643342035307,
+        "median_ae": 0.0,
+        "share_abs_lt_1": 0.8491833307891925
+      },
+      "matched_supply__offered_demand": {
+        "n": 6551,
+        "mae": 5.850016791329568,
+        "bias": -5.553005647992673,
+        "rmse": 11.046978884838325,
+        "median_ae": 1.0300000000000011,
+        "share_abs_lt_1": 0.4858800183178141
+      },
+      "offered_supply__matched_demand": {
+        "n": 6551,
+        "mae": 27.036829491680663,
+        "bias": -25.21204243626927,
+        "rmse": 42.36247178215428,
+        "median_ae": 11.879999999999995,
+        "share_abs_lt_1": 0.19233704777896504
+      }
+    }
+  },
+  "offered_crossing_error_by_month": {
+    "2023-01": {
+      "n": 744,
+      "mae": 43.856491935483874,
+      "bias": -43.050712365591394,
+      "rmse": 55.172388865674115,
+      "median_ae": 39.084999999999994,
+      "share_abs_lt_1": 0.043010752688172046,
+      "mean_unmatched_supply_mwh": 7027.828494623656,
+      "mean_official_price": 69.55173387096774
+    },
+    "2023-02": {
+      "n": 672,
+      "mae": 42.78977678571429,
+      "bias": -41.13144345238096,
+      "rmse": 50.295166755448115,
+      "median_ae": 39.21499999999999,
+      "share_abs_lt_1": 0.010416666666666666,
+      "mean_unmatched_supply_mwh": 7029.892857142857,
+      "mean_official_price": 133.47300595238096
+    },
+    "2023-03": {
+      "n": 743,
+      "mae": 45.555558546433375,
+      "bias": -45.02923283983849,
+      "rmse": 54.688063152878165,
+      "median_ae": 42.41999999999999,
+      "share_abs_lt_1": 0.033647375504710635,
+      "mean_unmatched_supply_mwh": 6768.524764468372,
+      "mean_official_price": 89.6956258411844
+    },
+    "2023-04": {
+      "n": 720,
+      "mae": 40.537,
+      "bias": -39.92355555555555,
+      "rmse": 51.14113623373827,
+      "median_ae": 36.894999999999996,
+      "share_abs_lt_1": 0.059722222222222225,
+      "mean_unmatched_supply_mwh": 6087.894444444444,
+      "mean_official_price": 73.733375
+    },
+    "2023-05": {
+      "n": 744,
+      "mae": 31.520994623655916,
+      "bias": -30.151424731182797,
+      "rmse": 39.6372176069872,
+      "median_ae": 26.915,
+      "share_abs_lt_1": 0.0456989247311828,
+      "mean_unmatched_supply_mwh": 4719.009811827957,
+      "mean_official_price": 74.20829301075268
+    },
+    "2023-06": {
+      "n": 720,
+      "mae": 29.320444444444448,
+      "bias": -28.679555555555552,
+      "rmse": 36.77990536058152,
+      "median_ae": 26.485,
+      "share_abs_lt_1": 0.04583333333333333,
+      "mean_unmatched_supply_mwh": 4791.474722222222,
+      "mean_official_price": 93.02169444444444
+    },
+    "2023-07": {
+      "n": 744,
+      "mae": 19.557459677419356,
+      "bias": -18.482862903225808,
+      "rmse": 25.37179919163066,
+      "median_ae": 15.265,
+      "share_abs_lt_1": 0.06182795698924731,
+      "mean_unmatched_supply_mwh": 3568.3344086021502,
+      "mean_official_price": 90.46876344086023
+    },
+    "2023-08": {
+      "n": 744,
+      "mae": 24.106048387096777,
+      "bias": -23.01454301075269,
+      "rmse": 32.001252478849224,
+      "median_ae": 19.06,
+      "share_abs_lt_1": 0.04704301075268817,
+      "mean_unmatched_supply_mwh": 3986.02311827957,
+      "mean_official_price": 96.04565860215054
+    },
+    "2023-09": {
+      "n": 720,
+      "mae": 23.37119444444445,
+      "bias": -20.698611111111113,
+      "rmse": 32.14300590935591,
+      "median_ae": 16.075000000000003,
+      "share_abs_lt_1": 0.044444444444444446,
+      "mean_unmatched_supply_mwh": 3510.709305555555,
+      "mean_official_price": 103.34044444444444
+    },
+    "2023-10": {
+      "n": 745,
+      "mae": 25.86840268456376,
+      "bias": -23.628456375838923,
+      "rmse": 35.52620358941425,
+      "median_ae": 18.260000000000005,
+      "share_abs_lt_1": 0.07114093959731543,
+      "mean_unmatched_supply_mwh": 3854.7249664429532,
+      "mean_official_price": 90.03115436241612
+    },
+    "2023-11": {
+      "n": 720,
+      "mae": 31.992874999999994,
+      "bias": -30.538541666666667,
+      "rmse": 40.782314033373176,
+      "median_ae": 29.065000000000005,
+      "share_abs_lt_1": 0.06666666666666667,
+      "mean_unmatched_supply_mwh": 5438.824444444445,
+      "mean_official_price": 63.44563888888889
+    },
+    "2023-12": {
+      "n": 744,
+      "mae": 29.664650537634408,
+      "bias": -27.471586021505377,
+      "rmse": 35.34691748282493,
+      "median_ae": 28.349999999999994,
+      "share_abs_lt_1": 0.012096774193548387,
+      "mean_unmatched_supply_mwh": 5160.337365591397,
+      "mean_official_price": 72.17399193548387
+    },
+    "2024-01": {
+      "n": 744,
+      "mae": 25.21016129032258,
+      "bias": -23.899086021505376,
+      "rmse": 30.666996708135187,
+      "median_ae": 24.05,
+      "share_abs_lt_1": 0.03225806451612903,
+      "mean_unmatched_supply_mwh": 5270.171505376345,
+      "mean_official_price": 74.10009408602151
+    },
+    "2024-02": {
+      "n": 696,
+      "mae": 19.14709770114942,
+      "bias": -18.59117816091954,
+      "rmse": 25.275695460945933,
+      "median_ae": 15.985000000000003,
+      "share_abs_lt_1": 0.10057471264367816,
+      "mean_unmatched_supply_mwh": 4985.590229885058,
+      "mean_official_price": 39.99896551724138
+    },
+    "2024-03": {
+      "n": 743,
+      "mae": 11.898034993270524,
+      "bias": -11.628909825033649,
+      "rmse": 21.101614827250337,
+      "median_ae": 3.2,
+      "share_abs_lt_1": 0.32705248990578734,
+      "mean_unmatched_supply_mwh": 4773.811843876178,
+      "mean_official_price": 20.30520861372813
+    },
+    "2024-04": {
+      "n": 720,
+      "mae": 8.514402777777779,
+      "bias": -8.063458333333333,
+      "rmse": 16.330763662656917,
+      "median_ae": 1.75,
+      "share_abs_lt_1": 0.4388888888888889,
+      "mean_unmatched_supply_mwh": 3407.100416666666,
+      "mean_official_price": 13.670041666666666
+    },
+    "2024-05": {
+      "n": 744,
+      "mae": 13.31627688172043,
+      "bias": -8.990336021505376,
+      "rmse": 19.13774156699129,
+      "median_ae": 9.11,
+      "share_abs_lt_1": 0.21370967741935484,
+      "mean_unmatched_supply_mwh": 2701.292069892473,
+      "mean_official_price": 30.39860215053763
+    },
+    "2024-06": {
+      "n": 720,
+      "mae": 19.71598611111111,
+      "bias": -17.650708333333334,
+      "rmse": 27.230220214252157,
+      "median_ae": 14.080000000000002,
+      "share_abs_lt_1": 0.18055555555555555,
+      "mean_unmatched_supply_mwh": 3235.677361111111,
+      "mean_official_price": 56.07977777777778
+    },
+    "2024-07": {
+      "n": 744,
+      "mae": 18.443534946236557,
+      "bias": -16.950067204301074,
+      "rmse": 25.57802798217621,
+      "median_ae": 12.395000000000003,
+      "share_abs_lt_1": 0.13306451612903225,
+      "mean_unmatched_supply_mwh": 3383.705376344086,
+      "mean_official_price": 72.31283602150538
+    },
+    "2024-08": {
+      "n": 744,
+      "mae": 22.64266129032258,
+      "bias": -21.160564516129032,
+      "rmse": 31.31176099078565,
+      "median_ae": 17.394999999999992,
+      "share_abs_lt_1": 0.10349462365591398,
+      "mean_unmatched_supply_mwh": 3830.982123655914,
+      "mean_official_price": 91.05432795698924
+    },
+    "2024-09": {
+      "n": 720,
+      "mae": 24.288444444444444,
+      "bias": -23.46322222222222,
+      "rmse": 33.002252734556706,
+      "median_ae": 19.760000000000005,
+      "share_abs_lt_1": 0.12361111111111112,
+      "mean_unmatched_supply_mwh": 3915.6212499999997,
+      "mean_official_price": 72.62331944444445
+    },
+    "2024-10": {
+      "n": 745,
+      "mae": 28.595046979865767,
+      "bias": -26.866939597315437,
+      "rmse": 36.69553471912009,
+      "median_ae": 25.0,
+      "share_abs_lt_1": 0.06577181208053691,
+      "mean_unmatched_supply_mwh": 3685.5940939597313,
+      "mean_official_price": 68.5538255033557
+    },
+    "2024-11": {
+      "n": 720,
+      "mae": 26.261888888888887,
+      "bias": -24.640916666666666,
+      "rmse": 34.53310768105169,
+      "median_ae": 21.84499999999999,
+      "share_abs_lt_1": 0.04722222222222222,
+      "mean_unmatched_supply_mwh": 4371.361666666667,
+      "mean_official_price": 104.43025
+    },
+    "2024-12": {
+      "n": 744,
+      "mae": 22.111706989247306,
+      "bias": -19.45431451612903,
+      "rmse": 30.694407517047477,
+      "median_ae": 16.11500000000001,
+      "share_abs_lt_1": 0.04032258064516129,
+      "mean_unmatched_supply_mwh": 3966.95685483871,
+      "mean_official_price": 111.23778225806453
+    },
+    "2025-01": {
+      "n": 744,
+      "mae": 38.235604838709676,
+      "bias": -37.683104838709674,
+      "rmse": 47.67561513352727,
+      "median_ae": 32.61500000000001,
+      "share_abs_lt_1": 0.043010752688172046,
+      "mean_unmatched_supply_mwh": 5332.531182795699,
+      "mean_official_price": 96.6898387096774
+    },
+    "2025-02": {
+      "n": 672,
+      "mae": 51.108244047619046,
+      "bias": -50.68714285714286,
+      "rmse": 57.422196391228866,
+      "median_ae": 49.050000000000004,
+      "share_abs_lt_1": 0.001488095238095238,
+      "mean_unmatched_supply_mwh": 5443.221428571428,
+      "mean_official_price": 108.30782738095238
+    },
+    "2025-03": {
+      "n": 743,
+      "mae": 30.89323014804845,
+      "bias": -30.820148048452218,
+      "rmse": 40.49310635214049,
+      "median_ae": 28.990000000000002,
+      "share_abs_lt_1": 0.1063257065948856,
+      "mean_unmatched_supply_mwh": 4266.836339165545,
+      "mean_official_price": 53.09450874831763
+    },
+    "2025-04": {
+      "n": 720,
+      "mae": 13.416958333333332,
+      "bias": -12.999513888888888,
+      "rmse": 21.010137953034853,
+      "median_ae": 6.665000000000001,
+      "share_abs_lt_1": 0.225,
+      "mean_unmatched_supply_mwh": 1894.3625,
+      "mean_official_price": 26.809138888888892
+    },
+    "2025-05": {
+      "n": 744,
+      "mae": 10.098051075268819,
+      "bias": -7.6658198924731185,
+      "rmse": 15.959689716073221,
+      "median_ae": 5.0,
+      "share_abs_lt_1": 0.13978494623655913,
+      "mean_unmatched_supply_mwh": 1057.5345430107527,
+      "mean_official_price": 16.92752688172043
+    },
+    "2025-06": {
+      "n": 720,
+      "mae": 9.802472222222223,
+      "bias": -8.899138888888888,
+      "rmse": 16.498317910892883,
+      "median_ae": 4.18,
+      "share_abs_lt_1": 0.20972222222222223,
+      "mean_unmatched_supply_mwh": 2117.617083333333,
+      "mean_official_price": 72.59720833333333
+    },
+    "2025-07": {
+      "n": 744,
+      "mae": 12.166075268817204,
+      "bias": -11.02567204301075,
+      "rmse": 19.06146176795428,
+      "median_ae": 5.355,
+      "share_abs_lt_1": 0.17069892473118278,
+      "mean_unmatched_supply_mwh": 2679.5032258064516,
+      "mean_official_price": 70.01465053763442
+    },
+    "2025-08": {
+      "n": 744,
+      "mae": 11.946881720430106,
+      "bias": -9.048736559139785,
+      "rmse": 18.80573393312372,
+      "median_ae": 5.520000000000003,
+      "share_abs_lt_1": 0.18413978494623656,
+      "mean_unmatched_supply_mwh": 1954.2396505376348,
+      "mean_official_price": 68.44469086021506
+    },
+    "2025-09": {
+      "n": 720,
+      "mae": 10.033083333333334,
+      "bias": -6.992472222222222,
+      "rmse": 16.59939106145497,
+      "median_ae": 5.120000000000001,
+      "share_abs_lt_1": 0.2,
+      "mean_unmatched_supply_mwh": 1608.84625,
+      "mean_official_price": 61.04233333333334
+    }
+  },
+  "matched_curve_consistency": {
+    "share_official_price_within_matched_bracket": 0.9953102303382444,
+    "max_abs_matched_supply_minus_demand_mwh": 82.19999999999709,
+    "total_matched_supply_above_official_mwh": 6963.4,
+    "total_matched_demand_below_official_mwh": 0.0
+  },
+  "association": {
+    "note": "Statistical association between the offered-curve clearing error and post-auction volumes. Both scale with price level, so within-price-regime correlations are reported as a partial control.",
+    "pearson_err_vs_unmatched_supply": -0.708608903536681,
+    "spearman_err_vs_unmatched_supply": -0.761190123434654,
+    "pearson_err_vs_unmatched_supply_strictly_below_p": -0.7386802801134099,
+    "pearson_err_vs_demand_gap": -0.20244630835568148,
+    "pearson_err_vs_official_price": -0.40925989914511657,
+    "within_price_regime_pearson_err_vs_unmatched_supply": {
+      "<=0": {
+        "n": 1653,
+        "r": 0.09099433754981391
+      },
+      "0-20": {
+        "n": 3391,
+        "r": -0.4014549482544705
+      },
+      "20-60": {
+        "n": 4344,
+        "r": -0.7255161113840467
+      },
+      "60-100": {
+        "n": 6932,
+        "r": -0.7281552073887858
+      },
+      ">100": {
+        "n": 7775,
+        "r": -0.7628182008116053
+      }
+    },
+    "ols_err_on_volumes": {
+      "n": 24095,
+      "coef": {
+        "intercept": -1.2316068886009293,
+        "unmatched_supply_gwh": -4.529468444257826,
+        "demand_gap_gwh": -3.122271902884048
+      },
+      "r2": 0.5278990197296347
+    },
+    "ols_err_on_volumes_and_price": {
+      "n": 24095,
+      "coef": {
+        "intercept": 10.704708588659912,
+        "unmatched_supply_gwh": -3.6991122282018023,
+        "demand_gap_gwh": -5.812021374382221,
+        "official_price": -0.17298721644894766
+      },
+      "r2": 0.5948553567365482
+    },
+    "mean_err_by_unmatched_supply_decile": {
+      "(-4408.001, -388.72]": 6.277630705394191,
+      "(-388.72, 670.08]": -3.36807804068078,
+      "(670.08, 1521.54]": -10.71154356846473,
+      "(1521.54, 2320.26]": -14.58200498132005,
+      "(2320.26, 3479.2]": -17.270796680497927,
+      "(3479.2, 4719.08]": -23.67838107098381,
+      "(4719.08, 5684.4]": -34.112212536322126,
+      "(5684.4, 7297.9]": -36.081485477178425,
+      "(7297.9, 9597.7]": -42.63445413034454,
+      "(9597.7, 23428.4]": -55.938041493775934
+    }
+  },
+  "mechanical_attribution": {
+    "note": "Counterfactual replacement of one offered curve by its matched counterpart. This is an accounting statement about the curves, not a causal identification of why offers were rejected.",
+    "mae_offered": 24.639403195683748,
+    "mae_after_replacing_supply_with_matched": 5.626935463789168,
+    "mae_after_replacing_both_with_matched": 0.427165802033617
+  },
+  "volumes_mwh": {
+    "supply_unmatched_at_or_below_p_mwh": {
+      "count": 24095.0,
+      "mean": 4106.241784602615,
+      "std": 3962.307359834011,
+      "min": -4407.999999999996,
+      "5%": -1206.959999999998,
+      "50%": 3479.199999999997,
+      "95%": 11760.089999999997,
+      "max": 23428.4
+    },
+    "supply_unmatched_strictly_below_p_mwh": {
+      "count": 24095.0,
+      "mean": 3875.8806806391367,
+      "std": 4019.345503871064,
+      "min": -4425.699999999997,
+      "5%": -1446.37,
+      "50%": 3188.2000000000007,
+      "95%": 11659.140000000003,
+      "max": 23041.4
+    },
+    "demand_matched_not_in_offered_mwh": {
+      "count": 24095.0,
+      "mean": 1082.2698485162896,
+      "std": 1322.4403783137486,
+      "min": -4605.299999999999,
+      "5%": -47.79999999999927,
+      "50%": 259.2999999999993,
+      "95%": 3284.000000000004,
+      "max": 7380.0
+    }
+  },
+  "offer_typology_period": {
+    "n_intervals": 4703,
+    "first_date": "2025-03-19",
+    "last_date": "2025-09-30",
+    "crossing_error_vs_official": {
+      "offered (gated method)": {
+        "n": 4703,
+        "mae": 11.652944928768871,
+        "bias": -9.954284499255794,
+        "rmse": 19.075970871285104,
+        "median_ae": 5.1,
+        "share_abs_lt_1": 0.19051669147352754
+      },
+      "simple_offers_only_supply": {
+        "n": 4703,
+        "mae": 27.232183712523923,
+        "bias": 23.871941314054858,
+        "rmse": 48.232603825021116,
+        "median_ae": 10.79,
+        "share_abs_lt_1": 0.16308739102700404
+      },
+      "offered_plus_matched_coupling_rows": {
+        "n": 4703,
+        "mae": 12.991824367425046,
+        "bias": -12.970693174569423,
+        "rmse": 20.08431605647843,
+        "median_ae": 7.840000000000003,
+        "share_abs_lt_1": 0.23219221773336168
+      },
+      "simple_offers_plus_matched_coupling_rows": {
+        "n": 4703,
+        "mae": 16.647350627259193,
+        "bias": 16.635923878375504,
+        "rmse": 32.79731949413588,
+        "median_ae": 6.060000000000002,
+        "share_abs_lt_1": 0.3752923665745269
+      },
+      "matched": {
+        "n": 4703,
+        "mae": 0.45886668084201576,
+        "bias": -0.3936402296406549,
+        "rmse": 1.4475726638248407,
+        "median_ae": 0.0,
+        "share_abs_lt_1": 0.8700829257920476
+      }
+    },
+    "mean_unmatched_supply_at_or_below_p_mwh": 1953.1802679140976,
+    "mean_complex_unmatched_at_or_below_p_mwh": 2834.5006166276844,
+    "share_of_unmatched_cheap_supply_that_is_complex": 1.451223250199427,
+    "mean_simple_unmatched_strictly_below_p_mwh": 5.685550549037654e-14,
+    "mean_matched_coupling_supply_mwh": 1038.543652987455,
+    "mean_matched_coupling_demand_mwh": 1152.6542844992557,
+    "share_intervals_with_coupling_rows": 0.9976610674037848
+  }
+}

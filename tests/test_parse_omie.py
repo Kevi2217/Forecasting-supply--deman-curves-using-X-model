@@ -53,3 +53,32 @@ def test_vectorised_number_parsing_matches_scalar():
     values = ["2.651,8", "180,30", "59.65", "1.500,00", "-500,00", "0,1", "3.000,00"]
     vec = _parse_number_series(pd.Series(values)).tolist()
     assert vec == pytest.approx([parse_omie_number(v) for v in values])
+
+
+def test_offer_type_column_is_parsed_when_present() -> None:
+    from electricity_forecasting.data.parse_omie import parse_curve_text
+
+    text = (
+        "OMIE - Mercado de electricidad;Fecha Emisión :29/09/2025 - 11:56;;30/09/2025;Mercado diario;;;;\n"
+        "\n"
+        "Periodo;Fecha;Pais;Unidad;Tipo Oferta;Potencia Compra/Venta;Precio Compra/Venta;"
+        "Ofertada (O)/Casada (C);Tipología de Oferta;\n"
+        "1;30/09/2025;MI;;V;100,0;10,00;O;S;\n"
+        "1;30/09/2025;MI;;V;50,0;20,00;O;C02;\n"
+        "1;30/09/2025;MI;;V;30,0;80,00;C;Imp FR;\n"
+    )
+    frame = parse_curve_text(text)
+    assert list(frame["offer_type"]) == ["S", "C02", "Imp FR"]
+    assert frame["energy_mwh"].tolist() == [100.0, 50.0, 30.0]
+
+
+def test_offer_type_absent_in_legacy_files() -> None:
+    from electricity_forecasting.data.parse_omie import parse_curve_text
+
+    text = (
+        "Hora;Fecha;Pais;Unidad;Tipo Oferta;Energía Compra/Venta;Precio Compra/Venta;Ofertada (O)/Casada (C);\n"
+        "1;15/01/2024;MI;;C;1.500,0;3.000,00;O;\n"
+    )
+    frame = parse_curve_text(text)
+    assert frame["offer_type"].isna().all()
+    assert frame["energy_mwh"].iloc[0] == 1500.0
